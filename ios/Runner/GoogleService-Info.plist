@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>695410772624-ia90a8u53hgjbmrbimrgt66je8vkrs0s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.695410772624-ia90a8u53hgjbmrbimrgt66je8vkrs0s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBrR0vxjYSJCt9wlLz-i-MzkztiY9YwzCo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>695410772624</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kubaolszewski.sneakyShopper</string>
+	<key>PROJECT_ID</key>
+	<string>sneaky-shopper</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sneaky-shopper.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:695410772624:ios:3c67c730d833e752c12615</string>
+</dict>
+</plist>
