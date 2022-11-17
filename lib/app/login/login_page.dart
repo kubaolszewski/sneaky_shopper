@@ -104,15 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextButton(
-                onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    print(error);
-                  }
-
+                onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => const RegisterPage(),
@@ -139,7 +131,15 @@ class _LoginPageState extends State<LoginPage> {
                   fixedSize: const Size(144, 48),
                   backgroundColor: const Color(0xff11DDC4),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: emailController.text,
+                        password: passwordController.text);
+                  } catch (error) {
+                    print(error);
+                  }
+                },
                 child: Text(
                   "Login",
                   style: GoogleFonts.teko(
