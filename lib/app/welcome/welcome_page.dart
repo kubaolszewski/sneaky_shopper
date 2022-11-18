@@ -1,15 +1,14 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-import 'package:sneaky_shopper/app/login/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({
     Key? key,
+    required this.user,
   }) : super(key: key);
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +37,31 @@ class WelcomePage extends StatelessWidget {
               ),
               const SizedBox(height: 440),
               Text(
-                'Wszystkie buty w jednym miejscu',
+                'Jesteś zalogowany jako ${user.email}.',
                 style: GoogleFonts.teko(
                   color: const Color(0xffBBFFF7),
                   fontSize: 24,
                 ),
               ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  backgroundColor: const Color(0xff11DDC4),
+                ),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                child: Text(
+                  'Wyloguj się',
+                  style: GoogleFonts.teko(
+                    color: Colors.black,
+                    fontSize: 32,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -59,13 +77,7 @@ class WelcomePage extends StatelessWidget {
                     fontSize: 32,
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const LoginPage(),
-                    ),
-                  );
-                },
+                onPressed: () {},
               ),
             ],
           ),

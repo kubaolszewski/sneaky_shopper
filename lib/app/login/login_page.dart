@@ -1,25 +1,23 @@
-// ignore_for_file: unused_import
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'dart:math';
-import 'package:sneaky_shopper/app/register/register_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({
+  LoginPage({
     Key? key,
   }) : super(key: key);
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
+  var errorMessage = '';
+  var isCreatingAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
                 child: TextField(
-                  controller: emailController,
+                  controller: widget.emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -73,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                       Icons.mail,
                       color: Colors.black,
                     ),
-                    hintText: 'Email',
+                    hintText: 'E-mail',
                     hintStyle:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
@@ -84,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
                 child: TextField(
-                  controller: passwordController,
+                  controller: widget.passwordController,
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
@@ -103,65 +101,127 @@ class _LoginPageState extends State<LoginPage> {
                   cursorColor: Colors.black,
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const RegisterPage(),
+              if (isCreatingAccount == true)
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
+                  child: TextField(
+                    controller: widget.confirmPasswordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                      ),
+                      filled: true,
+                      fillColor: Color(0xffD9D9D9),
+                      prefixIcon: Icon(
+                        Icons.check,
+                        color: Colors.black,
+                      ),
+                      hintText: 'Powtórz hasło',
+                      hintStyle:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                  );
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
-                ),
-                child: Text(
-                  "Nie masz konta? Zarejestuj się",
-                  style: GoogleFonts.teko(
-                    color: Colors.white,
-                    fontSize: 24,
+                    cursorColor: Colors.black,
                   ),
                 ),
-              ),
-              const SizedBox(height: 8),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
                   ),
-                  fixedSize: const Size(144, 48),
                   backgroundColor: const Color(0xff11DDC4),
                 ),
                 onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
-                  } catch (error) {
-                    print(error);
+                  if (isCreatingAccount == true) {
+                    // rejestracja
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(
+                        () {
+                          errorMessage = error.toString();
+                        },
+                      );
+                    }
+                  } else {
+                    // logowanie
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(
+                        () {
+                          errorMessage = error.toString();
+                        },
+                      );
+                    }
                   }
                 },
                 child: Text(
-                  "Login",
+                  isCreatingAccount == true ? 'Zarejestruj się' : 'Zaloguj się',
                   style: GoogleFonts.teko(
                     color: Colors.black,
                     fontSize: 32,
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.black,
-                ),
-                child: Text(
-                  "Napotkałeś problem? Napisz do nas",
-                  style: GoogleFonts.teko(
-                    color: Colors.white,
-                    fontSize: 24,
+              if (isCreatingAccount == false) ...[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color(0xff11DDC4),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isCreatingAccount = true;
+                      });
+                    },
+                    child: Text(
+                      'Utwórz konto',
+                      style: GoogleFonts.teko(
+                        color: Colors.black,
+                        fontSize: 32,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
+              if (isCreatingAccount == true) ...[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color(0xff11DDC4),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isCreatingAccount = false;
+                      });
+                    },
+                    child: Text(
+                      'Masz już konto? Zaloguj się',
+                      style: GoogleFonts.teko(
+                        color: Colors.black,
+                        fontSize: 32,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ],
           ),
         ),
