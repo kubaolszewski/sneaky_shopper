@@ -13,40 +13,35 @@ class MyAccountPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xff2D9A8D),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Jesteś zalogowany jako $email.',
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Jesteś zalogowany jako $email.',
+              style: GoogleFonts.teko(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24)),
+                  backgroundColor: const Color(0xff11DDC4)),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+              },
+              child: Text(
+                'Wyloguj się',
                 style: GoogleFonts.teko(
-                  color: Colors.white,
-                  fontSize: 24,
+                  color: Colors.black,
+                  fontSize: 32,
                 ),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    backgroundColor: const Color(0xff11DDC4)),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                child: Text(
-                  'Wyloguj się',
-                  style: GoogleFonts.teko(
-                    color: Colors.black,
-                    fontSize: 32,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
