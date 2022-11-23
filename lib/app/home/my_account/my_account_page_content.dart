@@ -12,38 +12,47 @@ class MyAccountPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff2D9A8D),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Jesteś zalogowany jako $email.',
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 48,
+            child: Text(
+              'Tu będzie Twój avatar',
               style: GoogleFonts.teko(
-                color: Colors.white,
-                fontSize: 24,
+                color: Colors.black,
+                fontSize: 14,
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24)),
-                  backgroundColor: const Color(0xff11DDC4)),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: Text(
-                'Wyloguj się',
-                style: GoogleFonts.teko(
-                  color: Colors.black,
-                  fontSize: 32,
-                ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Jesteś zalogowany jako $email',
+            style: GoogleFonts.teko(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24)),
+                backgroundColor: const Color(0xff11DDC4)),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            child: Text(
+              'Wyloguj się',
+              style: GoogleFonts.teko(
+                color: Colors.black,
+                fontSize: 32,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

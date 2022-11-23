@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                           hintStyle: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16)),
                       cursorColor: Colors.black)),
-              if (isCreatingAccount == true)
+              if (isCreatingAccount == true) ...[
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       cursorColor: Colors.black),
                 ),
+              ],
               if (isCreatingAccount == true) ...[
                 Padding(
                     padding: const EdgeInsets.all(8.0),

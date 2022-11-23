@@ -28,45 +28,53 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Color(0xff85c8c9),
-                hintText: 'Wpisz nazwę modelu:',
-              ),
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: const Color(0xff85c8c9),
+                  hintText: 'Wpisz nazwę modelu:',
+                  hintStyle:
+                      GoogleFonts.teko(color: Colors.black, fontSize: 24)),
               onChanged: (newValue) {
                 setState(() {
                   name = newValue;
                 });
               },
             ),
+            const SizedBox(height: 10),
             TextField(
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Color(0xff85c8c9),
-                hintText: 'Podaj cenę:',
-              ),
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: const Color(0xff85c8c9),
+                  hintText: 'Podaj cenę:',
+                  hintStyle:
+                      GoogleFonts.teko(color: Colors.black, fontSize: 24)),
               onChanged: (newValue) {
-                setState(() {});
+                setState(() {
+                  price = newValue;
+                });
               },
             ),
+            const SizedBox(height: 10),
             TextField(
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Color(0xff85c8c9),
-                hintText: 'Podaj rozmiar:',
-              ),
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: const Color(0xff85c8c9),
+                  hintText: 'Podaj rozmiar:',
+                  hintStyle:
+                      GoogleFonts.teko(color: Colors.black, fontSize: 24)),
               onChanged: (newValue) {
-                setState(() {});
+                setState(() {
+                  size = newValue;
+                });
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  backgroundColor: const Color(0xff11DDC4),
-                ),
-                onPressed: name.isEmpty
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    backgroundColor: const Color(0xff11DDC4)),
+                onPressed: name.isEmpty || price.isEmpty || size.isEmpty
                     ? null
                     : () {
                         FirebaseFirestore.instance.collection('shoes').add({
@@ -74,7 +82,6 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
                           'price': price,
                           'size': size,
                         });
-
                         widget.onSave();
                       },
                 child: Text('Dodaj pozycję',

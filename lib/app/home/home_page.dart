@@ -28,10 +28,12 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Sneaky Shopper',
           style: GoogleFonts.teko(
-            color: const Color(0xffBBFFF7),
+            color: Colors.white,
             fontSize: 36,
           ),
         ),
+        leading: null,
+        automaticallyImplyLeading: false,
         centerTitle: true,
       ),
       body: Builder(builder: (context) {
@@ -49,31 +51,40 @@ class _HomePageState extends State<HomePage> {
 
         return MyAccountPageContent(email: widget.user.email);
       }),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xff03675B),
-        currentIndex: currentIndex,
-        onTap: (newIndex) {
-          setState(() {
-            currentIndex = newIndex;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.list),
-            label: 'Lista',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.shopping_cart_sharp),
-            label: 'Dodaj',
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.white,
-            icon: Icon(Icons.person),
-            label: 'Moje konto',
-          ),
-        ],
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: const Color(0xff03675B),
+          textTheme: Theme.of(context).textTheme.copyWith(),
+        ),
+        child: BottomNavigationBar(
+          selectedLabelStyle: GoogleFonts.teko(fontSize: 16),
+          unselectedLabelStyle: GoogleFonts.teko(fontSize: 16),
+          selectedItemColor: Colors.orange[200],
+          unselectedItemColor: Colors.white,
+          currentIndex: currentIndex,
+          onTap: (newIndex) {
+            setState(() {
+              currentIndex = newIndex;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.list, size: 28),
+              label: 'Lista',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.shopping_cart_sharp, size: 28),
+              label: 'Dodaj produkt',
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: Icon(Icons.person, size: 28),
+              label: 'Moje konto',
+            ),
+          ],
+        ),
       ),
     );
   }
