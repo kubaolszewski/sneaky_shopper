@@ -16,16 +16,10 @@ class MyAccountPageContent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             backgroundColor: Colors.white,
             radius: 48,
-            child: Text(
-              'Tu będzie Twój avatar',
-              style: GoogleFonts.teko(
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
+            backgroundImage: AssetImage('images/gng.png'),
           ),
           const SizedBox(height: 10),
           Text(
