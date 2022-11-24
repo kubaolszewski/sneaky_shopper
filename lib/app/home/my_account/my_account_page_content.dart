@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 class MyAccountPageContent extends StatelessWidget {
   const MyAccountPageContent({
@@ -28,6 +29,45 @@ class MyAccountPageContent extends StatelessWidget {
               color: Colors.white,
               fontSize: 24,
             ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.privacy_tip,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Icon(
+                      Iconsax.medal5,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           ElevatedButton(
