@@ -36,21 +36,21 @@ class _LoginPageState extends State<LoginPage> {
               Text('Sneaky Shopper',
                   style: GoogleFonts.teko(
                       color: const Color(0xffBBFFF7), fontSize: 48)),
-              const SizedBox(height: 6),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
                 child: TextField(
                   controller: widget.emailController,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(24))),
-                      filled: true,
-                      fillColor: Color(0xffD9D9D9),
-                      prefixIcon: Icon(Icons.mail, color: Colors.black),
-                      hintText: 'E-mail',
-                      hintStyle:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(24))),
+                    filled: true,
+                    fillColor: Color(0xffD9D9D9),
+                    prefixIcon: Icon(Icons.mail, color: Colors.black),
+                    hintText: 'E-mail',
+                    hintStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                   cursorColor: Colors.black,
                 ),
               ),
@@ -127,44 +127,52 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Colors.white, fontSize: 24)))),
               ],
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24)),
-                      backgroundColor: const Color(0xff11DDC4)),
-                  onPressed: () async {
-                    if (isCreatingAccount == true) {
-                      // rejestracja
-                      try {
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
-                          email: widget.emailController.text,
-                          password: widget.passwordController.text,
-                        );
-                      } catch (error) {
-                        setState(() {
-                          errorMessage = error.toString();
-                        });
-                      }
-                    } else {
-                      // logowanie
-                      try {
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: widget.emailController.text,
-                          password: widget.passwordController.text,
-                        );
-                      } catch (error) {
-                        setState(() {
-                          errorMessage = error.toString();
-                        });
-                      }
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    backgroundColor: const Color(0xff11DDC4)),
+                onPressed: () async {
+                  if (isCreatingAccount == true) {
+                    // rejestracja
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
                     }
-                  },
-                  child: Text(
-                      isCreatingAccount == true
-                          ? 'Zarejestruj się'
-                          : 'Zaloguj się',
-                      style:
-                          GoogleFonts.teko(color: Colors.black, fontSize: 32))),
+                  } else {
+                    // logowanie
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
+                  }
+                },
+                child: Text(
+                    isCreatingAccount == true
+                        ? 'Zarejestruj się'
+                        : 'Zaloguj się',
+                    style: GoogleFonts.teko(color: Colors.black, fontSize: 32)),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  errorMessage,
+                  style: GoogleFonts.teko(color: Colors.white, fontSize: 20),
+                ),
+              ),
             ],
           ),
         ),

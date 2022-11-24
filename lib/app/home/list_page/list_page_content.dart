@@ -55,6 +55,13 @@ class ListPageContent extends StatelessWidget {
                   },
                   child: productWidget(document),
                 ),
+                const Divider(
+                  color: Colors.black,
+                  thickness: 2,
+                  height: null,
+                  indent: 60,
+                  endIndent: 60,
+                ),
               ],
             ],
           );
