@@ -74,7 +74,7 @@ class MyAccountPageContent extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24)),
-                backgroundColor: const Color(0xff11DDC4)),
+                backgroundColor: const Color(0xffff40ac)),
             onPressed: () {
               FirebaseAuth.instance.signOut();
             },
