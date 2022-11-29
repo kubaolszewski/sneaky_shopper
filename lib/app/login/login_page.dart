@@ -33,9 +33,11 @@ class _LoginPageState extends State<LoginPage> {
                 image: AssetImage('images/logo.png'),
                 width: 144,
               ),
-              Text('Sneaky Shopper',
-                  style: GoogleFonts.teko(
-                      color: const Color(0xffBBFFF7), fontSize: 48)),
+              Text(
+                'Sneaky Shopper',
+                style: GoogleFonts.teko(
+                    color: const Color(0xffBBFFF7), fontSize: 48),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 4),
@@ -43,7 +45,14 @@ class _LoginPageState extends State<LoginPage> {
                   controller: widget.emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
+<<<<<<< HEAD
                         borderRadius: BorderRadius.all(Radius.circular(12))),
+=======
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                    ),
+>>>>>>> 37918dd7a9f61cfe850a80d2e1ee7d7a586eb710
                     filled: true,
                     fillColor: Color(0xffD9D9D9),
                     prefixIcon: Icon(Icons.mail, color: Colors.black),
@@ -62,8 +71,15 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: true,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(
+<<<<<<< HEAD
                               borderRadius:
                                   BorderRadius.all(Radius.circular(12))),
+=======
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12),
+                            ),
+                          ),
+>>>>>>> 37918dd7a9f61cfe850a80d2e1ee7d7a586eb710
                           filled: true,
                           fillColor: Color(0xffD9D9D9),
                           prefixIcon: Icon(Icons.key, color: Colors.black),
@@ -80,8 +96,15 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
+<<<<<<< HEAD
                             borderRadius:
                                 BorderRadius.all(Radius.circular(12))),
+=======
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+>>>>>>> 37918dd7a9f61cfe850a80d2e1ee7d7a586eb710
                         filled: true,
                         fillColor: Color(0xffD9D9D9),
                         prefixIcon: Icon(Icons.check, color: Colors.black),
@@ -94,43 +117,65 @@ class _LoginPageState extends State<LoginPage> {
               ],
               if (isCreatingAccount == true) ...[
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            isCreatingAccount = false;
-                          });
-                        },
-                        child: Text('Masz już konto? Zaloguj się',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 24)))),
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isCreatingAccount = false;
+                      });
+                    },
+                    child: Text(
+                      'Masz już konto? Zaloguj się',
+                      style:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                  ),
+                ),
               ],
               if (isCreatingAccount == false) ...[
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24))),
-                        onPressed: () {
-                          setState(() {
-                            isCreatingAccount = true;
-                          });
-                        },
-                        child: Text('Nie masz konta? Zarejestruj się',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 24)))),
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isCreatingAccount = true;
+                      });
+                    },
+                    child: Text(
+                      'Nie masz konta? Zarejestruj się',
+                      style:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                  ),
+                ),
               ],
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
+<<<<<<< HEAD
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24)),
                     backgroundColor: const Color(0xffff40ac)),
+=======
+                  side: const BorderSide(
+                    color: Colors.black,
+                    width: 0.5,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  backgroundColor: const Color(0xffff40ac),
+                ),
+>>>>>>> 37918dd7a9f61cfe850a80d2e1ee7d7a586eb710
                 onPressed: () async {
                   if (isCreatingAccount == true) {
                     // rejestracja
@@ -160,10 +205,9 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 child: Text(
-                    isCreatingAccount == true
-                        ? 'Zarejestruj się'
-                        : 'Zaloguj się',
-                    style: GoogleFonts.teko(color: Colors.black, fontSize: 32)),
+                  isCreatingAccount == true ? 'Zarejestruj się' : 'Zaloguj się',
+                  style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
+                ),
               ),
               const SizedBox(height: 10),
               Padding(

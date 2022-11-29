@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sneaky_shopper/app/home/root_page.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -53,9 +54,7 @@ class WelcomePage extends StatelessWidget {
               Text(
                 'Sneaky Shopper',
                 style: GoogleFonts.teko(
-                  color: const Color(0xffBBFFF7),
-                  fontSize: 48,
-                ),
+                    color: const Color(0xffBBFFF7), fontSize: 48),
               ),
               const SizedBox(height: 450),
               ElevatedButton(
@@ -68,14 +67,14 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Text(
                   "Zaczynamy",
-                  style: GoogleFonts.teko(
-                    color: Colors.black,
-                    fontSize: 32,
-                  ),
+                  style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
                 ),
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const RootPage()));
+                    MaterialPageRoute(
+                      builder: (_) => const RootPage(),
+                    ),
+                  );
                 },
               ),
             ],

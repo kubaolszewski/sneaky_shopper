@@ -25,10 +25,7 @@ class MyAccountPageContent extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             'Jesteś zalogowany jako $email',
-            style: GoogleFonts.teko(
-              color: Colors.white,
-              fontSize: 24,
-            ),
+            style: GoogleFonts.teko(color: Colors.white, fontSize: 24),
           ),
           const SizedBox(height: 10),
           Row(
@@ -36,34 +33,25 @@ class MyAccountPageContent extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  TextButton(
+                  IconButton(
                     onPressed: () {},
-                    child: const Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Icons.settings, color: Colors.white),
                   ),
                 ],
               ),
               Column(
                 children: [
-                  TextButton(
+                  IconButton(
                     onPressed: () {},
-                    child: const Icon(
-                      Icons.privacy_tip,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Icons.privacy_tip, color: Colors.white),
                   ),
                 ],
               ),
               Column(
                 children: [
-                  TextButton(
+                  IconButton(
                     onPressed: () {},
-                    child: const Icon(
-                      Iconsax.medal5,
-                      color: Colors.white,
-                    ),
+                    icon: const Icon(Iconsax.medal5, color: Colors.white),
                   ),
                 ],
               ),
@@ -72,18 +60,27 @@ class MyAccountPageContent extends StatelessWidget {
           const SizedBox(height: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
+<<<<<<< HEAD
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24)),
                 backgroundColor: const Color(0xffff40ac)),
+=======
+              side: const BorderSide(
+                color: Colors.black,
+                width: 0.5,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+              ),
+              backgroundColor: const Color(0xffff40ac),
+            ),
+>>>>>>> 37918dd7a9f61cfe850a80d2e1ee7d7a586eb710
             onPressed: () {
               FirebaseAuth.instance.signOut();
             },
             child: Text(
               'Wyloguj się',
-              style: GoogleFonts.teko(
-                color: Colors.black,
-                fontSize: 32,
-              ),
+              style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
             ),
           ),
         ],
