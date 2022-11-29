@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sneaky_shopper/app/home/add_product_page/add_product_page_content.dart';
-import 'package:sneaky_shopper/app/home/list_page/list_page_content.dart';
-import 'package:sneaky_shopper/app/home/my_account/my_account_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -27,10 +27,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xff03675B),
         title: Text(
           'Sneaky Shopper',
-          style: GoogleFonts.teko(
-            color: Colors.white,
-            fontSize: 36,
-          ),
+          style: GoogleFonts.teko(color: Colors.white, fontSize: 36),
         ),
         leading: null,
         automaticallyImplyLeading: false,

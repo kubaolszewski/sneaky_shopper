@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sneaky_shopper/app/home/home_page.dart';
-import 'package:sneaky_shopper/app/login/login_page.dart';
+import 'package:sneaky_shopper/app/features/home/home_page.dart';
+import 'package:sneaky_shopper/app/features/login/login_page.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({
