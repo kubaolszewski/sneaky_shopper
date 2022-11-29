@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/productWidget.dart';
-// import 'package:sneaky_shopper/app/home/add_product_page/add_product_page_content.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
@@ -11,16 +12,14 @@ class ListPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance
-            .collection('shoes')
-            .orderBy('price', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
+    return BlocProvider(
+      create: (context) => ListPageCubit()..start(),
+      child: BlocBuilder<ListPageCubit, ListPageState>(
+        builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
             return Center(
               child: Text(
-                'Something went wrong',
+                'Something went wrong: ${state.errorMessage}',
                 style: GoogleFonts.teko(
                   color: Colors.white,
                   fontSize: 24,
@@ -28,19 +27,11 @@ class ListPageContent extends StatelessWidget {
               ),
             );
           }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Text(
-                'Loading...',
-                style: GoogleFonts.teko(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            );
+          if (state.isLoading) {
+            return const Center(child: CircularProgressIndicator());
           }
 
-          final documents = snapshot.data!.docs;
+          final documents = state.documents;
 
           return ListView(
             children: [
@@ -65,6 +56,8 @@ class ListPageContent extends StatelessWidget {
               ],
             ],
           );
-        });
+        },
+      ),
+    );
   }
 }
