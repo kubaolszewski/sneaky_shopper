@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         child: BottomNavigationBar(
           selectedLabelStyle: GoogleFonts.teko(fontSize: 16),
           unselectedLabelStyle: GoogleFonts.teko(fontSize: 16),
-          selectedItemColor: Colors.orange[200],
+          selectedItemColor: const Color(0xffff40ac),
           unselectedItemColor: Colors.white,
           currentIndex: currentIndex,
           onTap: (newIndex) {

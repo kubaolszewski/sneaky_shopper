@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: widget.emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(24))),
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
                     filled: true,
                     fillColor: Color(0xffD9D9D9),
                     prefixIcon: Icon(Icons.mail, color: Colors.black),
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(24))),
+                                  BorderRadius.all(Radius.circular(12))),
                           filled: true,
                           fillColor: Color(0xffD9D9D9),
                           prefixIcon: Icon(Icons.key, color: Colors.black),
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(24))),
+                                BorderRadius.all(Radius.circular(12))),
                         filled: true,
                         fillColor: Color(0xffD9D9D9),
                         prefixIcon: Icon(Icons.check, color: Colors.black),
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24)),
-                    backgroundColor: const Color(0xff11DDC4)),
+                    backgroundColor: const Color(0xffff40ac)),
                 onPressed: () async {
                   if (isCreatingAccount == true) {
                     // rejestracja
