@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sneaky_shopper/app/home/list_page/productWidget.dart';
+import 'package:sneaky_shopper/app/features/home/list_page/productWidget.dart';
 // import 'package:sneaky_shopper/app/home/add_product_page/add_product_page_content.dart';
 
 class ListPageContent extends StatelessWidget {
