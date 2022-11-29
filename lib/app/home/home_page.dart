@@ -27,10 +27,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xff03675B),
         title: Text(
           'Sneaky Shopper',
-          style: GoogleFonts.teko(
-            color: Colors.white,
-            fontSize: 36,
-          ),
+          style: GoogleFonts.teko(color: Colors.white, fontSize: 36),
         ),
         leading: null,
         automaticallyImplyLeading: false,

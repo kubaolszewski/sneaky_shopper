@@ -29,11 +29,11 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
           children: [
             TextField(
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xff85c8c9),
-                  hintText: 'Wpisz nazwę modelu:',
-                  hintStyle:
-                      GoogleFonts.teko(color: Colors.white, fontSize: 24)),
+                filled: true,
+                fillColor: const Color(0xff85c8c9),
+                hintText: 'Wpisz nazwę modelu:',
+                hintStyle: GoogleFonts.teko(color: Colors.white, fontSize: 24),
+              ),
               onChanged: (newValue) {
                 setState(() {
                   name = newValue;
@@ -43,11 +43,11 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
             const SizedBox(height: 10),
             TextField(
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xff85c8c9),
-                  hintText: 'Podaj cenę:',
-                  hintStyle:
-                      GoogleFonts.teko(color: Colors.white, fontSize: 24)),
+                filled: true,
+                fillColor: const Color(0xff85c8c9),
+                hintText: 'Podaj cenę:',
+                hintStyle: GoogleFonts.teko(color: Colors.white, fontSize: 24),
+              ),
               onChanged: (newValue) {
                 setState(() {
                   price = newValue;
@@ -57,11 +57,11 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
             const SizedBox(height: 10),
             TextField(
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xff85c8c9),
-                  hintText: 'Podaj rozmiar:',
-                  hintStyle:
-                      GoogleFonts.teko(color: Colors.white, fontSize: 24)),
+                filled: true,
+                fillColor: const Color(0xff85c8c9),
+                hintText: 'Podaj rozmiar:',
+                hintStyle: GoogleFonts.teko(color: Colors.white, fontSize: 24),
+              ),
               onChanged: (newValue) {
                 setState(() {
                   size = newValue;
@@ -70,22 +70,32 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: const Color(0xffff40ac)),
-                onPressed: name.isEmpty || price.isEmpty || size.isEmpty
-                    ? null
-                    : () {
-                        FirebaseFirestore.instance.collection('shoes').add({
-                          'name': name,
-                          'price': price,
-                          'size': size,
-                        });
-                        widget.onSave();
-                      },
-                child: Text('Dodaj pozycję',
-                    style: GoogleFonts.teko(color: Colors.white, fontSize: 24)))
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+                // disabledBackgroundColor: const Color(0xffff97d0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                backgroundColor: const Color(0xffff40ac),
+              ),
+              onPressed: name.isEmpty || price.isEmpty || size.isEmpty
+                  ? null
+                  : () {
+                      FirebaseFirestore.instance.collection('shoes').add({
+                        'name': name,
+                        'price': price,
+                        'size': size,
+                      });
+                      widget.onSave();
+                    },
+              child: Text(
+                'Dodaj pozycję',
+                style: GoogleFonts.teko(color: Colors.white, fontSize: 24),
+              ),
+            )
           ],
         ),
       ),
