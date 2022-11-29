@@ -26,7 +26,7 @@ class ListPageCubit extends Cubit<ListPageState> {
     );
 
     await Future.delayed(const Duration(
-      seconds: 3,
+      seconds: 2,
     ));
 
     _streamSubscription = FirebaseFirestore.instance

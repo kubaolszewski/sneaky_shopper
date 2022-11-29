@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:sneaky_shopper/app/features/home/root_page.dart';
-
+import 'package:sneaky_shopper/app/app.dart';
 import 'firebase_options.dart';
 
 void main() async {
