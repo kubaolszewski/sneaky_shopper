@@ -16,11 +16,49 @@ class RootCubit extends Cubit<RootState> {
           ),
         );
 
-  StreamSubscription? _streamSubscription;
+  Future<void> register(
+      {required String email, required String password}) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (error) {
+      emit(
+        RootState(
+          user: null,
+          isLoading: false,
+          errorMessage: error.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<void> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (error) {
+      emit(
+        RootState(
+          user: null,
+          isLoading: false,
+          errorMessage: error.toString(),
+        ),
+      );
+    }
+  }
 
   Future<void> signOut() async {
     FirebaseAuth.instance.signOut();
   }
+
+  StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(
@@ -30,8 +68,6 @@ class RootCubit extends Cubit<RootState> {
         errorMessage: '',
       ),
     );
-
-    await Future.delayed(const Duration(seconds: 2));
 
     _streamSubscription =
         FirebaseAuth.instance.authStateChanges().listen((user) {

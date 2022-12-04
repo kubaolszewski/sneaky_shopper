@@ -16,6 +16,10 @@ class ListPageCubit extends Cubit<ListPageState> {
 
   StreamSubscription? _streamSubscription;
 
+  Future<void> removeProduct(String id) async {
+    FirebaseFirestore.instance.collection('shoes').doc(id).delete();
+  }
+
   Future<void> start() async {
     emit(
       const ListPageState(

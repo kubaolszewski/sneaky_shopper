@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,10 +38,7 @@ class ListPageContent extends StatelessWidget {
                 Dismissible(
                   key: ValueKey(document.id),
                   onDismissed: (_) {
-                    FirebaseFirestore.instance
-                        .collection('shoes')
-                        .doc(document.id)
-                        .delete();
+                    context.read<ListPageCubit>().removeProduct(document.id);
                   },
                   child: productWidget(document),
                 ),
