@@ -61,14 +61,13 @@ class MyAccountPageContent extends StatelessWidget {
           const SizedBox(height: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24)),
+              backgroundColor: const Color(0xffff40ac),
               side: const BorderSide(
                 color: Colors.black,
                 width: 0.5,
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24),
-              ),
-              backgroundColor: const Color(0xffff40ac),
             ),
             onPressed: () {
               context.read<RootCubit>().signOut();
