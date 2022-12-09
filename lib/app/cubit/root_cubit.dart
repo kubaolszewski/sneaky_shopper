@@ -12,7 +12,9 @@ class RootCubit extends Cubit<RootState> {
           const RootState(
             user: null,
             isLoading: false,
+            isCreatingAccount: false,
             errorMessage: '',
+            pageIndex: 0,
           ),
         );
 
@@ -28,7 +30,9 @@ class RootCubit extends Cubit<RootState> {
         RootState(
           user: null,
           isLoading: false,
+          isCreatingAccount: false,
           errorMessage: error.toString(),
+          pageIndex: 0,
         ),
       );
     }
@@ -48,7 +52,9 @@ class RootCubit extends Cubit<RootState> {
         RootState(
           user: null,
           isLoading: false,
+          isCreatingAccount: false,
           errorMessage: error.toString(),
+          pageIndex: 0,
         ),
       );
     }
@@ -58,14 +64,64 @@ class RootCubit extends Cubit<RootState> {
     FirebaseAuth.instance.signOut();
   }
 
+  Future<void> changeOnSave(int newPageIndex) async {
+    emit(
+      RootState(
+        user: null,
+        isLoading: true,
+        isCreatingAccount: false,
+        errorMessage: '',
+        pageIndex: newPageIndex,
+      ),
+    );
+  }
+
+  Future<void> changeIndex(int newPageIndex) async {
+    emit(
+      RootState(
+        user: null,
+        isLoading: true,
+        isCreatingAccount: false,
+        errorMessage: '',
+        pageIndex: newPageIndex,
+      ),
+    );
+  }
+
+  Future<void> creatingAccount() async {
+    emit(
+      RootState(
+        user: null,
+        isLoading: true,
+        isCreatingAccount: true,
+        errorMessage: '',
+        pageIndex: state.pageIndex,
+      ),
+    );
+  }
+
+  Future<void> notCreatingAccount() async {
+    emit(
+      RootState(
+        user: null,
+        isLoading: true,
+        isCreatingAccount: false,
+        errorMessage: '',
+        pageIndex: state.pageIndex,
+      ),
+    );
+  }
+
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(
-      const RootState(
+      RootState(
         user: null,
         isLoading: true,
+        isCreatingAccount: false,
         errorMessage: '',
+        pageIndex: state.pageIndex,
       ),
     );
 
@@ -74,7 +130,9 @@ class RootCubit extends Cubit<RootState> {
       emit(RootState(
         user: user,
         isLoading: false,
+        isCreatingAccount: false,
         errorMessage: '',
+        pageIndex: state.pageIndex,
       ));
     })
           ..onError((error) {
@@ -82,7 +140,9 @@ class RootCubit extends Cubit<RootState> {
               RootState(
                 user: null,
                 isLoading: false,
+                isCreatingAccount: false,
                 errorMessage: error.toString(),
+                pageIndex: state.pageIndex,
               ),
             );
           });

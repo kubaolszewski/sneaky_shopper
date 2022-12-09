@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   LoginPage({
     Key? key,
   }) : super(key: key);
@@ -11,13 +11,6 @@ class LoginPage extends StatefulWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  var isCreatingAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 32, vertical: 4),
                       child: TextField(
-                        controller: widget.emailController,
+                        controller: emailController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
@@ -67,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 4),
                         child: TextField(
-                            controller: widget.passwordController,
+                            controller: passwordController,
                             obscureText: true,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(
@@ -83,12 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                                 hintStyle: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16)),
                             cursorColor: Colors.black)),
-                    if (isCreatingAccount == true) ...[
+                    if (state.isCreatingAccount == true) ...[
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 32, vertical: 4),
                         child: TextField(
-                            controller: widget.confirmPasswordController,
+                            controller: confirmPasswordController,
                             obscureText: true,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -107,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                             cursorColor: Colors.black),
                       ),
                     ],
-                    if (isCreatingAccount == true) ...[
+                    if (state.isCreatingAccount == true) ...[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextButton(
@@ -117,9 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           onPressed: () {
-                            setState(() {
-                              isCreatingAccount = false;
-                            });
+                            context.read<RootCubit>().notCreatingAccount();
                           },
                           child: Text(
                             'Masz już konto? Zaloguj się',
@@ -129,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ],
-                    if (isCreatingAccount == false) ...[
+                    if (state.isCreatingAccount == false) ...[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextButton(
@@ -139,9 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           onPressed: () {
-                            setState(() {
-                              isCreatingAccount = true;
-                            });
+                            context.read<RootCubit>().creatingAccount();
                           },
                           child: Text(
                             'Nie masz konta? Zarejestruj się',
@@ -163,21 +152,21 @@ class _LoginPageState extends State<LoginPage> {
                         backgroundColor: const Color(0xffff40ac),
                       ),
                       onPressed: () async {
-                        if (isCreatingAccount == true) {
+                        if (state.isCreatingAccount == true) {
                           // rejestracja
                           context.read<RootCubit>().register(
-                                email: widget.emailController.text,
-                                password: widget.passwordController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
                               );
                         } else {
                           // logowanie
                           context.read<RootCubit>().signIn(
-                              email: widget.emailController.text,
-                              password: widget.passwordController.text);
+                              email: emailController.text,
+                              password: passwordController.text);
                         }
                       },
                       child: Text(
-                        isCreatingAccount == true
+                        state.isCreatingAccount == true
                             ? 'Zarejestruj się'
                             : 'Zaloguj się',
                         style:

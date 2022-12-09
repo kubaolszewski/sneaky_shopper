@@ -11,9 +11,42 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       : super(const AddProductPageState(
           isLoading: false,
           errorMessage: '',
+          nameValue: '',
+          priceValue: '',
+          sizeValue: '',
         ));
 
   StreamSubscription? _streamSubscription;
+
+  Future<void> changeNameValue(String newNameValue) async {
+    emit(AddProductPageState(
+      isLoading: false,
+      errorMessage: '',
+      nameValue: newNameValue,
+      priceValue: state.priceValue,
+      sizeValue: state.sizeValue,
+    ));
+  }
+
+  Future<void> changePriceValue(String newPriceValue) async {
+    emit(AddProductPageState(
+      isLoading: false,
+      errorMessage: '',
+      nameValue: state.nameValue,
+      priceValue: newPriceValue,
+      sizeValue: state.sizeValue,
+    ));
+  }
+
+  Future<void> changeSizeValue(String newSizeValue) async {
+    emit(AddProductPageState(
+      isLoading: false,
+      errorMessage: '',
+      nameValue: state.nameValue,
+      priceValue: state.priceValue,
+      sizeValue: newSizeValue,
+    ));
+  }
 
   Future<void> addProduct(
     String name,
@@ -23,6 +56,16 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
     FirebaseFirestore.instance
         .collection('shoes')
         .add({'name': name, 'price': price, 'size': size});
+  }
+
+  Future<void> start() async {
+    emit(const AddProductPageState(
+      isLoading: false,
+      errorMessage: '',
+      nameValue: '',
+      priceValue: '',
+      sizeValue: '',
+    ));
   }
 
   @override
