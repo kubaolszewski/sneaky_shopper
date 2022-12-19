@@ -15,7 +15,7 @@ class AddProductPageContent extends StatelessWidget {
   final Function onSave;
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddProductPageCubit(),
+      create: (context) => AddProductPageCubit()..start(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {
           return Center(
@@ -32,7 +32,7 @@ class AddProductPageContent extends StatelessWidget {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // podmiana wartosci nazwy buta
+                    // setting name of shoes
                     onChanged: (newNameValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -48,7 +48,7 @@ class AddProductPageContent extends StatelessWidget {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // podmiana wartosci ceny buta
+                    // setting price of shoes
                     onChanged: (newPriceValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -64,7 +64,7 @@ class AddProductPageContent extends StatelessWidget {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // podmiana wartosci rozmiaru buta
+                    // setting size of shoes
                     onChanged: (newSizeValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -89,7 +89,7 @@ class AddProductPageContent extends StatelessWidget {
                             state.sizeValue.isEmpty
                         ? null
                         :
-                        // dodanie pozycji do listy
+                        // adding an item to the list
                         () {
                             context.read<AddProductPageCubit>().addProduct(
                                 state.nameValue,

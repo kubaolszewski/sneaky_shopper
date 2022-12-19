@@ -39,9 +39,11 @@ class HomePage extends StatelessWidget {
               }
 
               if (state.pageIndex == 1) {
-                return AddProductPageContent(onSave: () {
-                  context.read<RootCubit>().changeOnSave(0);
-                });
+                return AddProductPageContent(
+                  onSave: () {
+                    context.read<RootCubit>().changeOnSave(0);
+                  },
+                );
               }
 
               return MyAccountPageContent(email: user.email);
@@ -85,6 +87,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// context.read<RootCubit>().changeOnSave(0);
-// context.read<RootCubit>().changeIndex(newPageIndex);
