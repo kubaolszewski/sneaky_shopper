@@ -10,14 +10,12 @@ class ListPageCubit extends Cubit<ListPageState> {
 
   StreamSubscription? _streamSubscription;
 
-  Future<void> removeProduct(String id) async {
+  Future<void> removeProduct({required String id}) async {
     try {
-      FirebaseFirestore.instance.collection('shoes').doc(id).delete();
+      await FirebaseFirestore.instance.collection('shoes').doc(id).delete();
     } catch (error) {
       emit(
         ListPageState(
-          documents: const [],
-          isLoading: false,
           errorMessage: error.toString(),
         ),
       );
@@ -58,8 +56,6 @@ class ListPageCubit extends Cubit<ListPageState> {
         (error) {
           emit(
             ListPageState(
-              documents: const [],
-              isLoading: false,
               errorMessage: error.toString(),
             ),
           );
