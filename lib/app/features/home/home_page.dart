@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
               if (state.pageIndex == 1) {
                 return AddProductPageContent(
                   onSave: () {
+                    //change app page when an item is added to the list
                     context.read<RootCubit>().changeOnSave(0);
                   },
                 );
@@ -60,6 +61,7 @@ class HomePage extends StatelessWidget {
                 unselectedItemColor: Colors.white,
                 currentIndex: state.pageIndex,
                 onTap: (newPageIndex) {
+                  // function that changes indexes for BottomNavigationBar
                   context.read<RootCubit>().changeIndex(newPageIndex);
                 },
                 items: const [

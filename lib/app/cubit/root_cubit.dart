@@ -6,16 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 part 'root_state.dart';
 
 class RootCubit extends Cubit<RootState> {
-  RootCubit()
-      : super(
-          const RootState(
-            user: null,
-            isLoading: false,
-            isCreatingAccount: false,
-            errorMessage: '',
-            pageIndex: 0,
-          ),
-        );
+  RootCubit() : super(const RootState());
 
   Future<void> register(
       {required String email, required String password}) async {
@@ -37,10 +28,7 @@ class RootCubit extends Cubit<RootState> {
     }
   }
 
-  Future<void> signIn({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> signIn({required String email, required String password}) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -124,27 +112,31 @@ class RootCubit extends Cubit<RootState> {
       ),
     );
 
-    _streamSubscription =
-        FirebaseAuth.instance.authStateChanges().listen((user) {
-      emit(RootState(
-        user: user,
-        isLoading: false,
-        isCreatingAccount: false,
-        errorMessage: '',
-        pageIndex: state.pageIndex,
-      ));
-    })
-          ..onError((error) {
-            emit(
-              RootState(
-                user: null,
-                isLoading: false,
-                isCreatingAccount: false,
-                errorMessage: error.toString(),
-                pageIndex: state.pageIndex,
-              ),
-            );
-          });
+    _streamSubscription = FirebaseAuth.instance.authStateChanges().listen(
+      (user) {
+        emit(
+          RootState(
+            user: user,
+            isLoading: false,
+            isCreatingAccount: false,
+            errorMessage: '',
+            pageIndex: state.pageIndex,
+          ),
+        );
+      },
+    )..onError(
+        (error) {
+          emit(
+            RootState(
+              user: null,
+              isLoading: false,
+              isCreatingAccount: false,
+              errorMessage: error.toString(),
+              pageIndex: state.pageIndex,
+            ),
+          );
+        },
+      );
   }
 
   @override
