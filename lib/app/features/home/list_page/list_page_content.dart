@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
+import 'package:sneaky_shopper/models/item_model.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
@@ -26,17 +26,32 @@ class ListPageContent extends StatelessWidget {
               ),
             );
           }
+
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final documents = state.documents;
+          final itemModels = state.items;
 
           return ListView(
             children: [
-              for (final document in documents) ...[
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Twoja lista:',
+                    style: GoogleFonts.teko(
+                      color: Colors.white,
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
+              ),
+              for (final itemModel in itemModels) ...[
                 Dismissible(
-                  key: ValueKey(document.id),
+                  key: ValueKey(itemModel.id),
                   background: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: DecoratedBox(
@@ -59,9 +74,9 @@ class ListPageContent extends StatelessWidget {
                   onDismissed: (_) {
                     context
                         .read<ListPageCubit>()
-                        .removeProduct(id: document.id);
+                        .removeProduct(id: itemModel.id);
                   },
-                  child: _ProductWidget(document: document),
+                  child: _ProductWidget(itemModel: itemModel),
                 ),
                 const Divider(
                   color: Colors.black,
@@ -80,9 +95,12 @@ class ListPageContent extends StatelessWidget {
 }
 
 class _ProductWidget extends StatelessWidget {
-  const _ProductWidget({Key? key, required this.document}) : super(key: key);
+  const _ProductWidget({
+    Key? key,
+    required this.itemModel,
+  }) : super(key: key);
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> document;
+  final ItemModel itemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -110,21 +128,21 @@ class _ProductWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    document['name'],
+                    itemModel.name,
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 24,
                     ),
                   ),
                   Text(
-                    'Cena: ${document['price'].toString()} -,',
+                    'Cena: ${itemModel.price} -,',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 24,
                     ),
                   ),
                   Text(
-                    'Rozmiar: ${document['size'].toString()}',
+                    'Rozmiar: ${itemModel.size}',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 24,

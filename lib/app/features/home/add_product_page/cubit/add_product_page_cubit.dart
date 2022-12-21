@@ -35,7 +35,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
 
   Future<void> addProduct(String name, String price, String size) async {
     try {
-      await FirebaseFirestore.instance.collection('shoes').add(
+      await FirebaseFirestore.instance.collection('items').add(
         {
           'name': name,
           'price': price,

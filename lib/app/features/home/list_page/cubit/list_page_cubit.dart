@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sneaky_shopper/models/item_model.dart';
 
 part 'list_page_state.dart';
 
@@ -12,12 +13,10 @@ class ListPageCubit extends Cubit<ListPageState> {
 
   Future<void> removeProduct({required String id}) async {
     try {
-      await FirebaseFirestore.instance.collection('shoes').doc(id).delete();
+      await FirebaseFirestore.instance.collection('items').doc(id).delete();
     } catch (error) {
       emit(
-        ListPageState(
-          errorMessage: error.toString(),
-        ),
+        ListPageState(errorMessage: error.toString()),
       );
       start();
     }
@@ -26,38 +25,40 @@ class ListPageCubit extends Cubit<ListPageState> {
   Future<void> start() async {
     emit(
       const ListPageState(
-        documents: [],
+        items: [],
         isLoading: true,
         errorMessage: '',
       ),
     );
 
     await Future.delayed(
-      const Duration(
-        seconds: 2,
-      ),
+      Duration(seconds: (2.5).toInt()),
     );
 
     _streamSubscription = FirebaseFirestore.instance
-        .collection('shoes')
-        .orderBy('price', descending: true)
+        .collection('items')
+        .orderBy('price', descending: false)
         .snapshots()
         .listen(
-      (data) {
+      (items) {
+        final itemModels = items.docs.map((doc) {
+          return ItemModel(
+            id: doc.id,
+            name: doc['name'],
+            price: doc['price'],
+            size: doc['size'],
+          );
+        }).toList();
         emit(
           ListPageState(
-            documents: data.docs,
-            isLoading: false,
-            errorMessage: '',
+            items: itemModels,
           ),
         );
       },
     )..onError(
         (error) {
           emit(
-            ListPageState(
-              errorMessage: error.toString(),
-            ),
+            ListPageState(errorMessage: error.toString()),
           );
         },
       );
