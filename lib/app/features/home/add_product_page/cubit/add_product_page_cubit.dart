@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'add_product_page_state.dart';
 
 class AddProductPageCubit extends Cubit<AddProductPageState> {
-  AddProductPageCubit() : super(const AddProductPageState());
+  AddProductPageCubit(this._itemsRepository)
+      : super(const AddProductPageState());
+
+  final ItemsRepository _itemsRepository;
 
   StreamSubscription? _streamSubscription;
 
@@ -35,18 +38,10 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
 
   Future<void> addProduct(String name, String price, String size) async {
     try {
-      await FirebaseFirestore.instance.collection('items').add(
-        {
-          'name': name,
-          'price': price,
-          'size': size,
-        },
-      );
+      await _itemsRepository.addProduct(name, price, size);
     } catch (error) {
       emit(
-        AddProductPageState(
-          errorMessage: error.toString(),
-        ),
+        AddProductPageState(errorMessage: error.toString()),
       );
     }
   }

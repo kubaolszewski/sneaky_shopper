@@ -2,74 +2,44 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 part 'root_state.dart';
 
 class RootCubit extends Cubit<RootState> {
-  RootCubit() : super(const RootState());
+  RootCubit(this._loginRepository) : super(const RootState());
+
+  final LoginRepository _loginRepository;
 
   Future<void> register(
       {required String email, required String password}) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      await _loginRepository.register(email: email, password: password);
     } catch (error) {
       emit(
-        RootState(
-          user: null,
-          isLoading: false,
-          isCreatingAccount: false,
-          errorMessage: error.toString(),
-          pageIndex: 0,
-        ),
+        RootState(user: null, errorMessage: error.toString()),
       );
     }
   }
 
   Future<void> signIn({required String email, required String password}) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      await _loginRepository.signIn(email: email, password: password);
     } catch (error) {
       emit(
-        RootState(
-          user: null,
-          isLoading: false,
-          isCreatingAccount: false,
-          errorMessage: error.toString(),
-          pageIndex: 0,
-        ),
+        RootState(user: null, errorMessage: error.toString()),
       );
     }
   }
 
   Future<void> signOut() async {
-    FirebaseAuth.instance.signOut();
+    _loginRepository.signOut();
   }
 
-  Future<void> changeOnSave(int newPageIndex) async {
+  Future<void> changeIndexOnSave(int newPageIndex) async {
     emit(
       RootState(
-        user: null,
         isLoading: true,
-        isCreatingAccount: false,
-        errorMessage: '',
-        pageIndex: newPageIndex,
-      ),
-    );
-  }
-
-  Future<void> changeIndex(int newPageIndex) async {
-    emit(
-      RootState(
-        user: null,
-        isLoading: true,
-        isCreatingAccount: false,
-        errorMessage: '',
         pageIndex: newPageIndex,
       ),
     );
@@ -81,7 +51,6 @@ class RootCubit extends Cubit<RootState> {
         user: null,
         isLoading: true,
         isCreatingAccount: true,
-        errorMessage: '',
         pageIndex: state.pageIndex,
       ),
     );
@@ -93,7 +62,6 @@ class RootCubit extends Cubit<RootState> {
         user: null,
         isLoading: true,
         isCreatingAccount: false,
-        errorMessage: '',
         pageIndex: state.pageIndex,
       ),
     );
@@ -112,28 +80,17 @@ class RootCubit extends Cubit<RootState> {
       ),
     );
 
-    _streamSubscription = FirebaseAuth.instance.authStateChanges().listen(
+    _streamSubscription = _loginRepository.authState().listen(
       (user) {
         emit(
-          RootState(
-            user: user,
-            isLoading: false,
-            isCreatingAccount: false,
-            errorMessage: '',
-            pageIndex: state.pageIndex,
-          ),
+          RootState(user: user, pageIndex: state.pageIndex),
         );
       },
     )..onError(
         (error) {
           emit(
             RootState(
-              user: null,
-              isLoading: false,
-              isCreatingAccount: false,
-              errorMessage: error.toString(),
-              pageIndex: state.pageIndex,
-            ),
+                errorMessage: error.toString(), pageIndex: state.pageIndex),
           );
         },
       );

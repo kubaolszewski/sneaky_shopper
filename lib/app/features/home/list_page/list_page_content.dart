@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
+import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
@@ -12,7 +13,7 @@ class ListPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ListPageCubit()..start(),
+      create: (context) => ListPageCubit(ItemsRepository())..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
