@@ -26,11 +26,7 @@ class ListPageCubit extends Cubit<ListPageState> {
 
   Future<void> start() async {
     emit(
-      const ListPageState(
-        items: [],
-        isLoading: true,
-        errorMessage: '',
-      ),
+      const ListPageState(items: [], isLoading: true, errorMessage: ''),
     );
 
     await Future.delayed(
@@ -39,9 +35,7 @@ class ListPageCubit extends Cubit<ListPageState> {
 
     _streamSubscription = _itemsRepository.getItemsStream().listen(
       (items) {
-        emit(
-          ListPageState(items: items),
-        );
+        emit(ListPageState(items: items));
       },
     )..onError(
         (error) {

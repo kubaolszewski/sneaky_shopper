@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
+import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
@@ -105,53 +106,64 @@ class _ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color(0xff85c8c9),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: const [
-                  Image(
-                    image: AssetImage('images/przyklad.jpg'),
-                    width: 90,
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    itemModel.name,
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => ItemDetailsPage(id: itemModel.id)),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: const Color(0xff85c8c9),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: const Image(
+                        image: AssetImage('images/przyklad.jpg'),
+                        width: 90,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Cena: ${itemModel.price} -,',
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      itemModel.name,
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Rozmiar: ${itemModel.size}',
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+                    Text(
+                      'Cena: ${itemModel.price} -,',
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      'Rozmiar: ${itemModel.size}',
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

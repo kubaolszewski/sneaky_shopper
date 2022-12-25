@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sneaky_shopper/app/app.dart';
+import 'package:sneaky_shopper/app/root_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({
@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   fixedSize: const Size(224, 48),
-                  backgroundColor: const Color(0xff11DDC4),
+                  backgroundColor: const Color(0xffff40ac),
                 ),
                 child: Text(
                   "Zaczynamy",

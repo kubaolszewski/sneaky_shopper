@@ -21,6 +21,17 @@ class ItemsRepository {
     });
   }
 
+  Future<ItemModel> get({required String id}) async {
+    final doc =
+        await FirebaseFirestore.instance.collection('items').doc(id).get();
+    return ItemModel(
+      id: doc.id,
+      name: doc['name'],
+      price: doc['price'],
+      size: doc['size'],
+    );
+  }
+
   Future<void> removeProduct({required String id}) {
     return FirebaseFirestore.instance.collection('items').doc(id).delete();
   }
