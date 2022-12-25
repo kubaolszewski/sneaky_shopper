@@ -33,6 +33,18 @@ class ListPageContent extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
+          if (state.items.isEmpty) {
+            return Center(
+              child: Text(
+                'Coś tutaj pusto :/',
+                style: GoogleFonts.teko(
+                  color: Colors.white,
+                  fontSize: 32,
+                ),
+              ),
+            );
+          }
+
           final itemModels = state.items;
 
           return ListView(

@@ -36,7 +36,7 @@ class ItemDetailsPage extends StatelessWidget {
             final itemModel = state.itemModel;
 
             if (itemModel == null) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             return _ProductWidgetDetails(itemModel: itemModel);
           },
