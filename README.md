@@ -1,16 +1,16 @@
-# sneaky_shopper
+# Sneaky Shopper
 
-A new Flutter project.
+A Flutter app for the lovers of streetwear and beyond. 
 
-## Getting Started
+## Introduction & main goals
 
-This project is a starting point for a Flutter application.
+App contains functionalities of e.g.adding products to your personal list of items you have. 
+Currently searching for API to implement in the app for better experience. Future plans to
+release the app on Google Play and App Store to a wide amount of possible users.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Technologies used
+- Dart
+- Flutter 
+- Firebase
+- Bloc & Cubit
+- Dio & Rest API (work in progress)
