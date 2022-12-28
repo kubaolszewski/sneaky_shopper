@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
+import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
+import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
@@ -12,7 +14,7 @@ class ListPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ListPageCubit()..start(),
+      create: (context) => ListPageCubit(ItemsRepository())..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
@@ -29,6 +31,18 @@ class ListPageContent extends StatelessWidget {
 
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state.items.isEmpty) {
+            return Center(
+              child: Text(
+                'Coś tutaj pusto :/',
+                style: GoogleFonts.teko(
+                  color: Colors.white,
+                  fontSize: 32,
+                ),
+              ),
+            );
           }
 
           final itemModels = state.items;
@@ -104,53 +118,64 @@ class _ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: const Color(0xff85c8c9),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: const [
-                  Image(
-                    image: AssetImage('images/przyklad.jpg'),
-                    width: 90,
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    itemModel.name,
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => ItemDetailsPage(id: itemModel.id)),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: const Color(0xff85c8c9),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: const Image(
+                        image: AssetImage('images/przyklad.jpg'),
+                        width: 90,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Cena: ${itemModel.price} -,',
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      itemModel.name,
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Rozmiar: ${itemModel.size}',
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
+                    Text(
+                      'Cena: ${itemModel.price} -,',
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Text(
+                      'Rozmiar: ${itemModel.size}',
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

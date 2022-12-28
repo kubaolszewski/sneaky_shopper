@@ -6,6 +6,7 @@ import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
+import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -18,7 +19,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RootCubit(),
+      create: (context) => RootCubit(LoginRepository()),
       child: BlocBuilder<RootCubit, RootState>(
         builder: (context, state) {
           return Scaffold(
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
                 return AddProductPageContent(
                   onSave: () {
                     //change app page when an item is added to the list
-                    context.read<RootCubit>().changeOnSave(0);
+                    context.read<RootCubit>().changeIndexOnSave(0);
                   },
                 );
               }
@@ -62,7 +63,7 @@ class HomePage extends StatelessWidget {
                 currentIndex: state.pageIndex,
                 onTap: (newPageIndex) {
                   // function that changes indexes for BottomNavigationBar
-                  context.read<RootCubit>().changeIndex(newPageIndex);
+                  context.read<RootCubit>().changeIndexOnSave(newPageIndex);
                 },
                 items: const [
                   BottomNavigationBarItem(
