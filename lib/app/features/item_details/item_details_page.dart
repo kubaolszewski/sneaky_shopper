@@ -126,7 +126,7 @@ class _ProductWidgetDetails extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    'Wróc do listy',
+                    'Wróć do listy',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 24,

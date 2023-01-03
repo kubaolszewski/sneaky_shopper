@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
@@ -18,7 +19,10 @@ class ListPageCubit extends Cubit<ListPageState> {
       await _itemsRepository.removeProduct(id: id);
     } catch (error) {
       emit(
-        ListPageState(errorMessage: error.toString()),
+        ListPageState(
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
       start();
     }
@@ -26,21 +30,36 @@ class ListPageCubit extends Cubit<ListPageState> {
 
   Future<void> start() async {
     emit(
-      const ListPageState(items: [], isLoading: true, errorMessage: ''),
+      const ListPageState(
+        items: [],
+        status: Status.initial,
+        isLoading: true,
+        errorMessage: '',
+      ),
     );
 
     await Future.delayed(
-      Duration(seconds: (2.5).toInt()),
+      Duration(
+        seconds: (2.5).toInt(),
+      ),
     );
 
     _streamSubscription = _itemsRepository.getItemsStream().listen(
       (items) {
-        emit(ListPageState(items: items));
+        emit(
+          ListPageState(
+            items: items,
+            status: Status.success,
+          ),
+        );
       },
     )..onError(
         (error) {
           emit(
-            ListPageState(errorMessage: error.toString()),
+            ListPageState(
+              status: Status.error,
+              errorMessage: error.toString(),
+            ),
           );
         },
       );

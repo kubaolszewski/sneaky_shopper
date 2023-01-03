@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 part 'root_state.dart';
@@ -15,9 +16,16 @@ class RootCubit extends Cubit<RootState> {
       {required String email, required String password}) async {
     try {
       await _loginRepository.register(email: email, password: password);
+      emit(
+        const RootState(status: Status.success),
+      );
     } catch (error) {
       emit(
-        RootState(user: null, errorMessage: error.toString()),
+        RootState(
+          user: null,
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
     }
   }
@@ -25,15 +33,25 @@ class RootCubit extends Cubit<RootState> {
   Future<void> signIn({required String email, required String password}) async {
     try {
       await _loginRepository.signIn(email: email, password: password);
+      emit(
+        const RootState(status: Status.success),
+      );
     } catch (error) {
       emit(
-        RootState(user: null, errorMessage: error.toString()),
+        RootState(
+          user: null,
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
     }
   }
 
   Future<void> signOut() async {
     _loginRepository.signOut();
+    emit(
+      const RootState(status: Status.success),
+    );
   }
 
   Future<void> changeIndexOnSave(int newPageIndex) async {
@@ -73,6 +91,7 @@ class RootCubit extends Cubit<RootState> {
     emit(
       RootState(
         user: null,
+        status: Status.initial,
         isLoading: true,
         isCreatingAccount: false,
         errorMessage: '',
@@ -88,10 +107,10 @@ class RootCubit extends Cubit<RootState> {
       },
     )..onError(
         (error) {
-          emit(
-            RootState(
-                errorMessage: error.toString(), pageIndex: state.pageIndex),
-          );
+          emit(RootState(
+              status: Status.error,
+              errorMessage: error.toString(),
+              pageIndex: state.pageIndex));
         },
       );
   }

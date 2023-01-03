@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'add_product_page_state.dart';
@@ -37,11 +38,15 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   }
 
   Future<void> addProduct(String name, String price, String size) async {
+    emit(const AddProductPageState(status: Status.loading));
     try {
       await _itemsRepository.addProduct(name, price, size);
     } catch (error) {
       emit(
-        AddProductPageState(errorMessage: error.toString()),
+        AddProductPageState(
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
     }
   }
@@ -49,6 +54,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   Future<void> start() async {
     emit(const AddProductPageState(
       isLoading: false,
+      status: Status.initial,
       errorMessage: '',
       nameValue: '',
       priceValue: '',

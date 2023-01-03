@@ -3,6 +3,7 @@ part of 'add_product_page_cubit.dart';
 class AddProductPageState {
   const AddProductPageState({
     this.isLoading = false,
+    this.status = Status.initial,
     this.errorMessage = '',
     this.nameValue = '',
     this.priceValue = '',
@@ -10,6 +11,7 @@ class AddProductPageState {
   });
 
   final bool isLoading;
+  final Status status;
   final String errorMessage;
   final String nameValue;
   final String priceValue;

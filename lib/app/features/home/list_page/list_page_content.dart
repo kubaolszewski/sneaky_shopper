@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
@@ -17,7 +18,7 @@ class ListPageContent extends StatelessWidget {
       create: (context) => ListPageCubit(ItemsRepository())..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
-          if (state.errorMessage.isNotEmpty) {
+          if (state.status == Status.error) {
             return Center(
               child: Text(
                 'Something went wrong: ${state.errorMessage}',
