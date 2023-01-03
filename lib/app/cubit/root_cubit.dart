@@ -57,7 +57,6 @@ class RootCubit extends Cubit<RootState> {
   Future<void> changeIndexOnSave(int newPageIndex) async {
     emit(
       RootState(
-        isLoading: true,
         pageIndex: newPageIndex,
       ),
     );
@@ -67,7 +66,6 @@ class RootCubit extends Cubit<RootState> {
     emit(
       RootState(
         user: null,
-        isLoading: true,
         isCreatingAccount: true,
         pageIndex: state.pageIndex,
       ),
@@ -78,7 +76,6 @@ class RootCubit extends Cubit<RootState> {
     emit(
       RootState(
         user: null,
-        isLoading: true,
         isCreatingAccount: false,
         pageIndex: state.pageIndex,
       ),
@@ -92,7 +89,6 @@ class RootCubit extends Cubit<RootState> {
       RootState(
         user: null,
         status: Status.initial,
-        isLoading: true,
         isCreatingAccount: false,
         errorMessage: '',
         pageIndex: state.pageIndex,

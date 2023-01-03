@@ -30,7 +30,7 @@ class ListPageContent extends StatelessWidget {
             );
           }
 
-          if (state.isLoading) {
+          if (state.status == Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
 

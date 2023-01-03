@@ -53,8 +53,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
 
   Future<void> start() async {
     emit(const AddProductPageState(
-      isLoading: false,
-      status: Status.initial,
+      status: Status.success,
       errorMessage: '',
       nameValue: '',
       priceValue: '',

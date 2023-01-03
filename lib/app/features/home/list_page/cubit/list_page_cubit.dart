@@ -32,8 +32,7 @@ class ListPageCubit extends Cubit<ListPageState> {
     emit(
       const ListPageState(
         items: [],
-        status: Status.initial,
-        isLoading: true,
+        status: Status.loading,
         errorMessage: '',
       ),
     );
