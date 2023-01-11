@@ -37,31 +37,25 @@ class ListPageCubit extends Cubit<ListPageState> {
       ),
     );
 
-    await Future.delayed(
-      Duration(
-        seconds: (2.5).toInt(),
-      ),
-    );
-
     _streamSubscription = _itemsRepository.getItemsStream().listen(
       (items) {
-        emit(
-          ListPageState(
-            items: items,
-            status: Status.success,
-          ),
-        );
-      },
-    )..onError(
-        (error) {
+        try {
+          emit(
+            ListPageState(
+              items: items,
+              status: Status.success,
+            ),
+          );
+        } catch (error) {
           emit(
             ListPageState(
               status: Status.error,
               errorMessage: error.toString(),
             ),
           );
-        },
-      );
+        }
+      },
+    );
   }
 
   @override

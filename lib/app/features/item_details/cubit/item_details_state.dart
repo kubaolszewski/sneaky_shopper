@@ -2,10 +2,10 @@ part of 'item_details_cubit.dart';
 
 class ItemDetailsState {
   ItemDetailsState({
-    this.itemModel,
+    this.itemDetailsModel,
     this.status = Status.initial,
   });
 
-  final ItemModel? itemModel;
+  final ItemDetailsModel? itemDetailsModel;
   final Status status;
 }

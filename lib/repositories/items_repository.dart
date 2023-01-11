@@ -1,63 +1,27 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
+import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRepository {
+  ItemsRepository(this._itemsRemoteDataSource);
+
+  final ItemsRemoteFirestoreDataSource _itemsRemoteDataSource;
+
   Stream<List<ItemModel>> getItemsStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in.');
     }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .orderBy('price', descending: true)
-        .snapshots()
-        .map((querySnapshot) {
-      return querySnapshot.docs.map(
-        (doc) {
-          return ItemModel(
-            id: doc.id,
-            name: doc['name'],
-            price: doc['price'],
-            size: doc['size'],
-          );
-        },
-      ).toList();
-    });
+    return _itemsRemoteDataSource.getItemsStream();
   }
 
-  Future<ItemModel> get({required String id}) async {
+  Future<ItemDetailsModel> getDetails({required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in.');
     }
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .doc(id)
-        .get();
-    return ItemModel(
-      id: doc.id,
-      name: doc['name'],
-      price: doc['price'],
-      size: doc['size'],
-    );
-  }
-
-  Future<void> removeProduct({required String id}) {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in.');
-    }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .doc(id)
-        .delete();
+    return _itemsRemoteDataSource.getDetails(id: id);
   }
 
   Future<void> addProduct(
@@ -69,16 +33,14 @@ class ItemsRepository {
     if (userID == null) {
       throw Exception('User is not logged in.');
     }
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .add(
-      {
-        'name': name,
-        'price': price,
-        'size': size,
-      },
-    );
+    return _itemsRemoteDataSource.addProduct(name, price, size);
+  }
+
+  Future<void> removeProduct({required String id}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      throw Exception('User is not logged in.');
+    }
+    return _itemsRemoteDataSource.removeProduct(id: id);
   }
 }

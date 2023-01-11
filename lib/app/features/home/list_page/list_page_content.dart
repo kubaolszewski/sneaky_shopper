@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
@@ -15,7 +16,9 @@ class ListPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ListPageCubit(ItemsRepository())..start(),
+      create: (context) =>
+          ListPageCubit(ItemsRepository(ItemsRemoteFirestoreDataSource()))
+            ..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
           if (state.status == Status.error) {
@@ -140,41 +143,34 @@ class _ProductWidget extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: const Image(
-                        image: AssetImage('images/przyklad.jpg'),
-                        width: 90,
-                      ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(itemModel.image),
+                      radius: 40,
                     ),
                   ],
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        itemModel.name,
+                        style: GoogleFonts.teko(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      itemModel.name,
-                      style: GoogleFonts.teko(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                    Text(
-                      'Cena: ${itemModel.price} -,',
-                      style: GoogleFonts.teko(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
-                    ),
-                    Text(
-                      'Rozmiar: ${itemModel.size}',
-                      style: GoogleFonts.teko(
-                        color: Colors.white,
-                        fontSize: 24,
-                      ),
+                  children: const [
+                    Icon(
+                      Icons.arrow_right_outlined,
+                      color: Colors.white,
+                      size: 32,
                     ),
                   ],
-                ),
+                )
               ],
             ),
           ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
-import 'package:sneaky_shopper/models/item_model.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
+import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 class ItemDetailsPage extends StatelessWidget {
@@ -17,6 +18,7 @@ class ItemDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xff03675B),
         centerTitle: true,
         title: Text(
@@ -30,15 +32,16 @@ class ItemDetailsPage extends StatelessWidget {
       backgroundColor: const Color(0xff2D9A8D),
       body: BlocProvider(
         create: (context) =>
-            ItemDetailsCubit(ItemsRepository())..getItemWithID(id: id),
+            ItemDetailsCubit(ItemsRepository(ItemsRemoteFirestoreDataSource()))
+              ..getItemWithID(id: id),
         child: BlocBuilder<ItemDetailsCubit, ItemDetailsState>(
           builder: (context, state) {
-            final itemModel = state.itemModel;
+            final itemDetailsModel = state.itemDetailsModel;
 
-            if (itemModel == null) {
+            if (itemDetailsModel == null) {
               return const Center(child: CircularProgressIndicator());
             }
-            return _ProductWidgetDetails(itemModel: itemModel);
+            return _ProductWidgetDetails(itemDetailsModel: itemDetailsModel);
           },
         ),
       ),
@@ -49,10 +52,10 @@ class ItemDetailsPage extends StatelessWidget {
 class _ProductWidgetDetails extends StatelessWidget {
   const _ProductWidgetDetails({
     Key? key,
-    required this.itemModel,
+    required this.itemDetailsModel,
   }) : super(key: key);
 
-  final ItemModel itemModel;
+  final ItemDetailsModel itemDetailsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -68,28 +71,28 @@ class _ProductWidgetDetails extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: const Image(
-                      image: AssetImage('images/przyklad.jpg'),
-                      width: 250,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(itemDetailsModel.image),
+                      radius: 120,
                     ),
                   ),
                 ),
                 Text(
-                  itemModel.name,
+                  itemDetailsModel.name,
                   style: GoogleFonts.teko(
                     color: Colors.white,
                     fontSize: 30,
                   ),
                 ),
                 Text(
-                  'Cena: ${itemModel.price} -,',
+                  'Cena: ${itemDetailsModel.price} -,',
                   style: GoogleFonts.teko(
                     color: Colors.white,
                     fontSize: 30,
                   ),
                 ),
                 Text(
-                  'Rozmiar: ${itemModel.size}',
+                  'Rozmiar: ${itemDetailsModel.size}',
                   style: GoogleFonts.teko(
                     color: Colors.white,
                     fontSize: 30,

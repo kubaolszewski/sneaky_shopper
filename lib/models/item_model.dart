@@ -2,11 +2,11 @@ class ItemModel {
   ItemModel({
     required this.id,
     required this.name,
-    required this.price,
-    required this.size,
+    required this.image,
+    required this.itemType,
   });
   final String id;
   final String name;
-  final String price;
-  final String size;
+  final String image;
+  final String itemType;
 }

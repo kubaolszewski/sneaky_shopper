@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
-import 'package:sneaky_shopper/models/item_model.dart';
+import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'item_details_state.dart';
 
 class ItemDetailsCubit extends Cubit<ItemDetailsState> {
   ItemDetailsCubit(this._itemsRepository)
-      : super(ItemDetailsState(itemModel: null));
+      : super(ItemDetailsState(itemDetailsModel: null));
 
   final ItemsRepository _itemsRepository;
 
@@ -16,10 +16,10 @@ class ItemDetailsCubit extends Cubit<ItemDetailsState> {
       ItemDetailsState(status: Status.loading),
     );
     try {
-      final itemModel = await _itemsRepository.get(id: id);
+      final itemDetailsModel = await _itemsRepository.getDetails(id: id);
       emit(
         ItemDetailsState(
-          itemModel: itemModel,
+          itemDetailsModel: itemDetailsModel,
           status: Status.success,
         ),
       );
