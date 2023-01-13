@@ -11,8 +11,6 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
 
   final ItemsRepository _itemsRepository;
 
-  StreamSubscription? _streamSubscription;
-
   Future<void> changeNameValue(String newNameValue) async {
     emit(AddProductPageState(
       nameValue: newNameValue,
@@ -37,10 +35,20 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
     ));
   }
 
-  Future<void> addProduct(String name, String price, String size) async {
+  Future<void> addProduct(
+    String name,
+    String price,
+    String size,
+    String itemType,
+  ) async {
     emit(const AddProductPageState(status: Status.loading));
     try {
-      await _itemsRepository.addProduct(name, price, size);
+      await _itemsRepository.addProduct(
+        name,
+        price,
+        size,
+        itemType,
+      );
     } catch (error) {
       emit(
         AddProductPageState(
@@ -52,18 +60,20 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   }
 
   Future<void> start() async {
-    emit(const AddProductPageState(
-      status: Status.success,
-      errorMessage: '',
-      nameValue: '',
-      priceValue: '',
-      sizeValue: '',
-    ));
-  }
-
-  @override
-  Future<void> close() {
-    _streamSubscription?.cancel();
-    return super.close();
+    // emit(const AddProductPageState(status: Status.loading));
+    try {
+      emit(const AddProductPageState(
+        status: Status.success,
+        errorMessage: '',
+        nameValue: '',
+        priceValue: '',
+        sizeValue: '',
+      ));
+    } catch (error) {
+      emit(AddProductPageState(
+        status: Status.error,
+        errorMessage: error.toString(),
+      ));
+    }
   }
 }

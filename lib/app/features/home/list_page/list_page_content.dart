@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
@@ -17,7 +18,7 @@ class ListPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ListPageCubit(ItemsRepository(ItemsRemoteFirestoreDataSource()))
+          ListPageCubit(ItemsRepository(ItemsRemoteFirestoreDataSource(), ItemsRemoteDioDataSource()))
             ..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
@@ -54,10 +55,9 @@ class ListPageContent extends StatelessWidget {
           return ListView(
             children: [
               const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Align(
-                  alignment: Alignment.center,
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
                   child: Text(
                     'Twoja lista:',
                     style: GoogleFonts.teko(
@@ -71,7 +71,8 @@ class ListPageContent extends StatelessWidget {
                 Dismissible(
                   key: ValueKey(itemModel.id),
                   background: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
@@ -94,7 +95,7 @@ class ListPageContent extends StatelessWidget {
                         .read<ListPageCubit>()
                         .removeProduct(id: itemModel.id);
                   },
-                  child: _ProductWidget(itemModel: itemModel),
+                  child: _ItemWidget(itemModel: itemModel),
                 ),
                 const Divider(
                   color: Colors.black,
@@ -112,8 +113,8 @@ class ListPageContent extends StatelessWidget {
   }
 }
 
-class _ProductWidget extends StatelessWidget {
-  const _ProductWidget({
+class _ItemWidget extends StatelessWidget {
+  const _ItemWidget({
     Key? key,
     required this.itemModel,
   }) : super(key: key);
@@ -126,51 +127,56 @@ class _ProductWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-              builder: (context) => ItemDetailsPage(id: itemModel.id)),
+              builder: (context) => ItemDetailsPage(
+                    id: itemModel.id,
+                    // itemType: itemModel.itemType,
+                  )),
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: const Color(0xff85c8c9),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(itemModel.image),
-                      radius: 40,
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        itemModel.name,
-                        style: GoogleFonts.teko(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(itemModel.image),
+                    radius: 40,
                   ),
                 ),
                 Column(
-                  children: const [
-                    Icon(
-                      Icons.arrow_right_outlined,
-                      color: Colors.white,
-                      size: 32,
+                  children: [
+                    Text(
+                      itemModel.name,
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                    Text(
+                      itemModel.itemType,
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                   ],
-                )
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.arrow_right_outlined,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
               ],
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
@@ -9,16 +10,17 @@ import 'package:sneaky_shopper/repositories/items_repository.dart';
 class ItemDetailsPage extends StatelessWidget {
   const ItemDetailsPage({
     required this.id,
+    // required this.itemType,
     Key? key,
   }) : super(key: key);
 
   final String id;
+  // final String itemType;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xff03675B),
         centerTitle: true,
         title: Text(
@@ -32,7 +34,7 @@ class ItemDetailsPage extends StatelessWidget {
       backgroundColor: const Color(0xff2D9A8D),
       body: BlocProvider(
         create: (context) =>
-            ItemDetailsCubit(ItemsRepository(ItemsRemoteFirestoreDataSource()))
+            ItemDetailsCubit(ItemsRepository(ItemsRemoteFirestoreDataSource(),ItemsRemoteDioDataSource()))
               ..getItemWithID(id: id),
         child: BlocBuilder<ItemDetailsCubit, ItemDetailsState>(
           builder: (context, state) {
@@ -41,6 +43,21 @@ class ItemDetailsPage extends StatelessWidget {
             if (itemDetailsModel == null) {
               return const Center(child: CircularProgressIndicator());
             }
+            // switch (state.status) {
+            //   case value:
+
+            //     break;
+            //   case value:
+
+            //     break;
+            //   case value:
+
+            //     break;
+            //   case value:
+
+            //     break;
+            //   default:
+            // }
             return _ProductWidgetDetails(itemDetailsModel: itemDetailsModel);
           },
         ),
@@ -70,10 +87,11 @@ class _ProductWidgetDetails extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(itemDetailsModel.image),
-                      radius: 120,
+                    borderRadius: BorderRadius.circular(32),
+                    child: Image(
+                      image: NetworkImage(itemDetailsModel.image),
+                      width: 320,
+                      height: 320,
                     ),
                   ),
                 ),
@@ -115,24 +133,6 @@ class _ProductWidgetDetails extends StatelessWidget {
                           fontSize: 24,
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    backgroundColor: const Color(0xffff40ac),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    'Wróć do listy',
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 24,
                     ),
                   ),
                 ),

@@ -42,11 +42,11 @@ class ItemsRemoteFirestoreDataSource {
         .get();
     return ItemDetailsModel(
       image: doc['image'],
-      itemType: doc['item_type'],
+      // itemType: doc['item_type'],
       name: doc['name'],
       price: doc['price'],
       size: doc['size'],
-      //description: doc['description']
+      // description: doc['description']
     );
   }
 
@@ -54,6 +54,7 @@ class ItemsRemoteFirestoreDataSource {
     String name,
     String price,
     String size,
+    String itemType,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -68,6 +69,7 @@ class ItemsRemoteFirestoreDataSource {
         'name': name,
         'price': price,
         'size': size,
+        'item_type': itemType,
       },
     );
   }
