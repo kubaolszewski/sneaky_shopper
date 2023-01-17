@@ -6,6 +6,7 @@ import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/search_page/search_page_content.dart';
 import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -47,6 +48,9 @@ class HomePage extends StatelessWidget {
                   },
                 );
               }
+              if (state.pageIndex == 2) {
+                return const SearchPage();
+              }
 
               return MyAccountPageContent(email: user.email);
             }),
@@ -62,7 +66,7 @@ class HomePage extends StatelessWidget {
                 unselectedItemColor: Colors.white,
                 currentIndex: state.pageIndex,
                 onTap: (newPageIndex) {
-                  // function that changes indexes for BottomNavigationBar
+                  // function that controls indexes for BottomNavigationBar
                   context.read<RootCubit>().changeIndexOnSave(newPageIndex);
                 },
                 items: const [
@@ -75,6 +79,11 @@ class HomePage extends StatelessWidget {
                     backgroundColor: Colors.white,
                     icon: Icon(Icons.shopping_cart_sharp, size: 28),
                     label: 'Dodaj produkt',
+                  ),
+                  BottomNavigationBarItem(
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.search, size: 28),
+                    label: 'Przeglądaj',
                   ),
                   BottomNavigationBarItem(
                     backgroundColor: Colors.white,
