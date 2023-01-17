@@ -158,6 +158,7 @@ class LoginPage extends StatelessWidget {
                           context.read<RootCubit>().register(
                                 email: emailController.text,
                                 password: passwordController.text,
+                                confirmPassword: confirmPasswordController.text,
                               );
                         } else {
                           // logowanie

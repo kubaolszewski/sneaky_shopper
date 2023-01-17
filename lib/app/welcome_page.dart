@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                 ),
                 child: Text(
                   "Zaczynamy",
-                  style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
+                  style: GoogleFonts.teko(color: Colors.white, fontSize: 32),
                 ),
                 onPressed: () {
                   Navigator.of(context).push(

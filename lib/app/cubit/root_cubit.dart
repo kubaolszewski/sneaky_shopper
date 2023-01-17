@@ -13,20 +13,31 @@ class RootCubit extends Cubit<RootState> {
   final LoginRepository _loginRepository;
 
   Future<void> register(
-      {required String email, required String password}) async {
-    try {
-      await _loginRepository.register(email: email, password: password);
+      {required String email,
+      required String password,
+      required String confirmPassword}) async {
+    if (password.trim() != confirmPassword.trim()) {
       emit(
-        const RootState(status: Status.success),
-      );
-    } catch (error) {
-      emit(
-        RootState(
-          user: null,
-          status: Status.error,
-          errorMessage: error.toString(),
+        const RootState(
+          errorMessage: 'Passwords don\'t match.',
+          isCreatingAccount: true,
         ),
       );
+    } else {
+      try {
+        await _loginRepository.register(email: email, password: password);
+        emit(
+          const RootState(status: Status.success),
+        );
+      } catch (error) {
+        emit(
+          RootState(
+            user: null,
+            status: Status.error,
+            errorMessage: error.toString(),
+          ),
+        );
+      }
     }
   }
 

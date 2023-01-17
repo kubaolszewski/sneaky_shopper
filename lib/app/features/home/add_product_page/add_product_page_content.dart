@@ -6,7 +6,7 @@ import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_so
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
-class AddProductPageContent extends StatefulWidget {
+class AddProductPageContent extends StatelessWidget {
   const AddProductPageContent({
     Key? key,
     required this.onSave,
@@ -15,18 +15,11 @@ class AddProductPageContent extends StatefulWidget {
   final Function onSave;
 
   @override
-  State<AddProductPageContent> createState() => _AddProductPageContentState();
-}
-
-class _AddProductPageContentState extends State<AddProductPageContent> {
-  final List<bool> selections = List.generate(7, (_) => false);
-
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          AddProductPageCubit(ItemsRepository(ItemsRemoteFirestoreDataSource(),ItemsRemoteDioDataSource()))
-            ..start(),
+      create: (context) => AddProductPageCubit(ItemsRepository(
+          ItemsRemoteFirestoreDataSource(), ItemsRemoteDioDataSource()))
+        ..start(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {
           return Center(
@@ -35,47 +28,6 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: ToggleButtons(
-                      fillColor: const Color(0xffff40ac),
-                      highlightColor: const Color(0xffff97d0),
-                      disabledColor: const Color(0xffff97d0),
-                      borderWidth: 3,
-                      borderColor: const Color(0xffff40ac),
-                      selectedBorderColor: const Color(0xffff40ac),
-                      borderRadius: BorderRadius.circular(12),
-                      isSelected: selections,
-                      onPressed: (int index) {
-                        setState(() {
-                          selections[index] = !selections[index];
-                        });
-                      },
-                      children: [
-                        Text('Sneakers',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('T-shirt',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('Hoodie',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('Pants',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('Jacket',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('Cap',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                        Text('Suit',
-                            style: GoogleFonts.teko(
-                                color: Colors.white, fontSize: 18)),
-                      ],
-                    ),
-                  ),
                   TextField(
                     decoration: InputDecoration(
                       filled: true,
@@ -84,11 +36,11 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting name of shoes
-                    onChanged: (newNameValue) {
+                    // setting name of an item
+                    onChanged: (nameValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changeNameValue(newNameValue);
+                          .changeNameValue(nameValue);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -100,11 +52,11 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting price of shoes
-                    onChanged: (newPriceValue) {
+                    // setting price of an item
+                    onChanged: (priceValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changePriceValue(newPriceValue);
+                          .changePriceValue(priceValue);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -116,11 +68,27 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting size of shoes
-                    onChanged: (newSizeValue) {
+                    // setting size of an item
+                    onChanged: (sizeValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changeSizeValue(newSizeValue);
+                          .changeSizeValue(sizeValue);
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xff85c8c9),
+                      hintText: 'Podaj typ przedmiotu: ',
+                      hintStyle:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                    // setting type of an item
+                    onChanged: (typeValue) {
+                      context
+                          .read<AddProductPageCubit>()
+                          .setTypeValue(typeValue);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -138,17 +106,21 @@ class _AddProductPageContentState extends State<AddProductPageContent> {
                     ),
                     onPressed: state.nameValue.isEmpty ||
                             state.priceValue.isEmpty ||
-                            state.sizeValue.isEmpty
-                        //selections.isEmpty
+                            state.sizeValue.isEmpty ||
+                            state.typeValue.isEmpty
                         ? null
                         :
                         // adding an item to the list
                         () {
-                            context.read<AddProductPageCubit>().addProduct(
-                                state.nameValue,
-                                state.priceValue,
-                                state.sizeValue, selections.toString());
-                            widget.onSave();
+                            context
+                                .read<AddProductPageCubit>()
+                                .addProductToList(
+                                  state.nameValue,
+                                  state.priceValue,
+                                  state.sizeValue,
+                                  state.typeValue,
+                                );
+                            onSave();
                           },
                     child: Text(
                       'Dodaj pozycję',

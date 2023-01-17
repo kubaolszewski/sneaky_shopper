@@ -1,6 +1,6 @@
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-import 'package:sneaky_shopper/models/item_details_model.dart';
+// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRepository {
@@ -14,25 +14,29 @@ class ItemsRepository {
     return _itemsRemoteFirestoreDataSource.getItemsStream();
   }
 
-  Future<ItemDetailsModel> getDetails({required String id}) async {
+  Future<ItemModel> getDetails({required String id}) async {
     return _itemsRemoteFirestoreDataSource.getDetails(id: id);
   }
 
-  Future<ItemDetailsModel?> getRemoteData() async {
-    final json = await _itemsRemoteDioDataSource.getRemoteData();
-    if (json == null) {
-      return null;
-    }
-    return ItemDetailsModel.fromJson(json);
-  }
+  // Future<List<ItemModel?>> provideRemoteDetailsForType(
+  //     {required String itemType}) async {
+  //   final jsonItem = await _itemsRemoteDioDataSource.provideRemoteDetails();
+  //   if (jsonItem == null) {
+  //     return [];
+  //   }
+  //   final remoteiItems =
+  //       jsonItem.map((item) => ItemModel.fromJson(item)).toList();
 
-  Future<void> addProduct(
+  //   return remoteiItems.where((item) => item.itemType == itemType).toList();
+  // }
+
+  Future<void> addProductToList(
     String name,
     String price,
     String size,
     String itemType,
   ) async {
-    return _itemsRemoteFirestoreDataSource.addProduct(
+    return _itemsRemoteFirestoreDataSource.addProductToList(
       name,
       price,
       size,

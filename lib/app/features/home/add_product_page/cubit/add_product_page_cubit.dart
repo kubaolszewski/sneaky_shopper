@@ -16,6 +16,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       nameValue: newNameValue,
       priceValue: state.priceValue,
       sizeValue: state.sizeValue,
+      typeValue: state.typeValue,
     ));
   }
 
@@ -24,6 +25,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       nameValue: state.nameValue,
       priceValue: newPriceValue,
       sizeValue: state.sizeValue,
+      typeValue: state.typeValue,
     ));
   }
 
@@ -32,10 +34,20 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       nameValue: state.nameValue,
       priceValue: state.priceValue,
       sizeValue: newSizeValue,
+      typeValue: state.typeValue,
     ));
   }
 
-  Future<void> addProduct(
+  Future<void> setTypeValue(String newTypeValue) async {
+    emit(AddProductPageState(
+      nameValue: state.nameValue,
+      priceValue: state.priceValue,
+      sizeValue: state.sizeValue,
+      typeValue: newTypeValue,
+    ));
+  }
+
+  Future<void> addProductToList(
     String name,
     String price,
     String size,
@@ -43,7 +55,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   ) async {
     emit(const AddProductPageState(status: Status.loading));
     try {
-      await _itemsRepository.addProduct(
+      await _itemsRepository.addProductToList(
         name,
         price,
         size,
@@ -60,14 +72,10 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   }
 
   Future<void> start() async {
-    // emit(const AddProductPageState(status: Status.loading));
+    emit(const AddProductPageState(status: Status.loading));
     try {
       emit(const AddProductPageState(
         status: Status.success,
-        errorMessage: '',
-        nameValue: '',
-        priceValue: '',
-        sizeValue: '',
       ));
     } catch (error) {
       emit(AddProductPageState(

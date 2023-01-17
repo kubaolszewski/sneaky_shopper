@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sneaky_shopper/models/item_details_model.dart';
+// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRemoteFirestoreDataSource {
@@ -13,23 +13,27 @@ class ItemsRemoteFirestoreDataSource {
         .collection('users')
         .doc(userID)
         .collection('items')
-        .orderBy('price', descending: true)
+        .orderBy('item_type', descending: false)
         .snapshots()
-        .map((querySnapshot) {
-      return querySnapshot.docs.map(
-        (doc) {
-          return ItemModel(
-            id: doc.id,
-            image: doc['image'],
-            itemType: doc['item_type'],
-            name: doc['name'],
-          );
-        },
-      ).toList();
-    });
+        .map(
+      (querySnapshot) {
+        return querySnapshot.docs.map(
+          (doc) {
+            return ItemModel(
+              id: doc.id,
+              name: doc['name'],
+              price: doc['price'],
+              size: doc['size'],
+              itemType: doc['item_type'],
+              // image: doc['image'],
+            );
+          },
+        ).toList();
+      },
+    );
   }
 
-  Future<ItemDetailsModel> getDetails({required String id}) async {
+  Future<ItemModel> getDetails({required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in.');
@@ -40,17 +44,17 @@ class ItemsRemoteFirestoreDataSource {
         .collection('items')
         .doc(id)
         .get();
-    return ItemDetailsModel(
-      image: doc['image'],
-      // itemType: doc['item_type'],
+    return ItemModel(
+      id: id,
       name: doc['name'],
       price: doc['price'],
       size: doc['size'],
-      // description: doc['description']
+      itemType: doc['item_type'],
+      // image: doc['image'],
     );
   }
 
-  Future<void> addProduct(
+  Future<void> addProductToList(
     String name,
     String price,
     String size,
@@ -70,6 +74,7 @@ class ItemsRemoteFirestoreDataSource {
         'price': price,
         'size': size,
         'item_type': itemType,
+        // 'image': image,
       },
     );
   }
