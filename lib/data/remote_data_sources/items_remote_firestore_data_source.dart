@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRemoteFirestoreDataSource {
@@ -25,7 +24,7 @@ class ItemsRemoteFirestoreDataSource {
               price: doc['price'],
               size: doc['size'],
               itemType: doc['item_type'],
-              // image: doc['image'],
+              image: doc['image'],
             );
           },
         ).toList();
@@ -50,7 +49,7 @@ class ItemsRemoteFirestoreDataSource {
       price: doc['price'],
       size: doc['size'],
       itemType: doc['item_type'],
-      // image: doc['image'],
+      image: doc['image'],
     );
   }
 
@@ -59,6 +58,7 @@ class ItemsRemoteFirestoreDataSource {
     String price,
     String size,
     String itemType,
+    String image,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -74,7 +74,7 @@ class ItemsRemoteFirestoreDataSource {
         'price': price,
         'size': size,
         'item_type': itemType,
-        // 'image': image,
+        'image': image,
       },
     );
   }

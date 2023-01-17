@@ -1,6 +1,5 @@
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRepository {
@@ -35,12 +34,14 @@ class ItemsRepository {
     String price,
     String size,
     String itemType,
+    String image,
   ) async {
     return _itemsRemoteFirestoreDataSource.addProductToList(
       name,
       price,
       size,
       itemType,
+      image,
     );
   }
 

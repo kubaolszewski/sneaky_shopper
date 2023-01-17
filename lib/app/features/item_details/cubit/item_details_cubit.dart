@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
-// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 

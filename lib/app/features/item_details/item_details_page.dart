@@ -5,7 +5,6 @@ import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-// import 'package:sneaky_shopper/models/item_details_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 

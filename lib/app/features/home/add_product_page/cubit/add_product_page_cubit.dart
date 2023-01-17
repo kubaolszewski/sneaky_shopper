@@ -17,6 +17,8 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: state.priceValue,
       sizeValue: state.sizeValue,
       typeValue: state.typeValue,
+            image: state.image,
+
     ));
   }
 
@@ -26,6 +28,8 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: newPriceValue,
       sizeValue: state.sizeValue,
       typeValue: state.typeValue,
+            image: state.image,
+
     ));
   }
 
@@ -35,6 +39,8 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: state.priceValue,
       sizeValue: newSizeValue,
       typeValue: state.typeValue,
+            image: state.image,
+
     ));
   }
 
@@ -44,6 +50,17 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: state.priceValue,
       sizeValue: state.sizeValue,
       typeValue: newTypeValue,
+      image: state.image,
+    ));
+  }
+
+  Future<void> imageInput(String newImage) async {
+    emit(AddProductPageState(
+      nameValue: state.nameValue,
+      priceValue: state.priceValue,
+      sizeValue: state.sizeValue,
+      typeValue: state.typeValue,
+      image: newImage,
     ));
   }
 
@@ -52,6 +69,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
     String price,
     String size,
     String itemType,
+    String image,
   ) async {
     emit(const AddProductPageState(status: Status.loading));
     try {
@@ -60,6 +78,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
         price,
         size,
         itemType,
+        image,
       );
     } catch (error) {
       emit(

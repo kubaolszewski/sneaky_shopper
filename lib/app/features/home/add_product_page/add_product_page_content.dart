@@ -92,6 +92,22 @@ class AddProductPageContent extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xff85c8c9),
+                      hintText: 'Prześlij grafikę',
+                      hintStyle:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                    // upload an image of item
+                    onChanged: (imageInput) {
+                      context
+                          .read<AddProductPageCubit>()
+                          .imageInput(imageInput);
+                    },
+                  ),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       side: const BorderSide(
@@ -107,7 +123,8 @@ class AddProductPageContent extends StatelessWidget {
                     onPressed: state.nameValue.isEmpty ||
                             state.priceValue.isEmpty ||
                             state.sizeValue.isEmpty ||
-                            state.typeValue.isEmpty
+                            state.typeValue.isEmpty ||
+                            state.image.isEmpty
                         ? null
                         :
                         // adding an item to the list
@@ -119,6 +136,7 @@ class AddProductPageContent extends StatelessWidget {
                                   state.priceValue,
                                   state.sizeValue,
                                   state.typeValue,
+                                  state.image,
                                 );
                             onSave();
                           },

@@ -8,6 +8,7 @@ class AddProductPageState {
     this.priceValue = '',
     this.sizeValue = '',
     this.typeValue = '',
+    this.image = '',
   });
 
   final Status status;
@@ -16,4 +17,6 @@ class AddProductPageState {
   final String priceValue;
   final String sizeValue;
   final String typeValue;
+    final String image;
+
 }
