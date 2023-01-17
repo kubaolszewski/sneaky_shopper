@@ -71,22 +71,22 @@ class HomePage extends StatelessWidget {
                 },
                 items: const [
                   BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
+                    backgroundColor:  Color(0xff03675B),
                     icon: Icon(Icons.list, size: 28),
                     label: 'Lista',
                   ),
                   BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
+                    backgroundColor:  Color(0xff03675B),
                     icon: Icon(Icons.shopping_cart_sharp, size: 28),
                     label: 'Dodaj produkt',
                   ),
                   BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.search, size: 28),
                     label: 'Przeglądaj',
                   ),
                   BottomNavigationBarItem(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.person, size: 28),
                     label: 'Moje konto',
                   ),
