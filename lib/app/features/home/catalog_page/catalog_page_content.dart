@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/home/catalog_page/cubit/catalog_page_cubit.dart';
+import 'package:sneaky_shopper/app/features/home/catalog_page/item_type_content/item_type_info.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
@@ -87,7 +88,9 @@ class _ItemInfoSelection extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExpandedInfo()));
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ExpandedInfo(model: model),
+          ));
         },
         child: Container(
           decoration: BoxDecoration(
