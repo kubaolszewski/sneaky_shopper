@@ -6,7 +6,7 @@ import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
-import 'package:sneaky_shopper/app/features/home/search_page/search_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/catalog_page/catalog_page_content.dart';
 import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                 );
               }
               if (state.pageIndex == 2) {
-                return const SearchPage();
+                return const CatalogPage();
               }
 
               return MyAccountPageContent(email: user.email);

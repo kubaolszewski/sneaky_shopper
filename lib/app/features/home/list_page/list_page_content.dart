@@ -18,7 +18,7 @@ class ListPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ListPageCubit(ItemsRepository(
-          ItemsRemoteFirestoreDataSource(), ItemsRemoteDioDataSource()))
+          ItemsRemoteFirestoreDataSource(), ItemsInfoRemoteDioDataSource()))
         ..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
@@ -152,11 +152,11 @@ class _ItemWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('images/przyklad.jpg'),
-                  radius: 40,
+                  backgroundImage: NetworkImage(itemModel.image),
+                  radius: 32,
                 ),
               ),
               Column(

@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 
-class ItemsRemoteDioDataSource {
-  Future<List<Map<String, dynamic>>?> provideRemoteDetails() async {
+class ItemsInfoRemoteDioDataSource {
+  Future<List<Map<String, dynamic>>?> provideRemoteInfo() async {
     final response = await Dio().get<List<dynamic>>(
         "https://my-json-server.typicode.com/kubaolszewski/json-demo/products");
-    final itemListDynamic = response.data;
-    if (itemListDynamic == null) {
+    final itemInfoListDynamic = response.data;
+    if (itemInfoListDynamic == null) {
       return null;
     }
-    return itemListDynamic.map((data) => data as Map<String, dynamic>).toList();
+    return itemInfoListDynamic.map((data) => data as Map<String, dynamic>).toList();
   }
 }

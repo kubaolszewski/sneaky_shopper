@@ -1,16 +1,16 @@
 class ItemInfoModel {
   ItemInfoModel({
-    required this.image,
     required this.type,
+    required this.image,
     required this.description,
   });
 
-  final String image;
   final String type;
+  final String image;
   final String description;
 
   ItemInfoModel.fromJson(Map<String, dynamic> json)
-      : image = '',
-        type = '',
-        description = '';
+      : type = json['item_type'],
+        image = json['image'],
+        description = json['description'];
 }

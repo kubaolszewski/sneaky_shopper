@@ -18,7 +18,7 @@ class AddProductPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddProductPageCubit(ItemsRepository(
-          ItemsRemoteFirestoreDataSource(), ItemsRemoteDioDataSource()))
+          ItemsRemoteFirestoreDataSource(), ItemsInfoRemoteDioDataSource()))
         ..start(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {
