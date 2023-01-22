@@ -26,20 +26,10 @@ class ItemsRepository {
     return jsonItemsInfo.map((info) => ItemInfoModel.fromJson(info)).toList();
   }
 
-  Future<void> addProductToList(
-    String name,
-    String price,
-    String size,
-    String itemType,
-    String image,
-  ) async {
+  Future<void> addProductToList(String name, String price, String size,
+      String itemType, String image) async {
     return _itemsRemoteFirestoreDataSource.addProductToList(
-      name,
-      price,
-      size,
-      itemType,
-      image,
-    );
+        name, price, size, itemType, image);
   }
 
   Future<void> removeProduct({required String id}) {
