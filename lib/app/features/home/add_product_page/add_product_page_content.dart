@@ -1,8 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/cubit/add_product_page_cubit.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
@@ -18,7 +19,7 @@ class AddProductPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddProductPageCubit(ItemsRepository(
-          ItemsRemoteFirestoreDataSource(), ItemsInfoRemoteDioDataSource()))
+          ItemsRemoteFirestoreDataSource(), ItemsInfoRemoteRetrofitDataSource(Dio())))
         ..start(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {

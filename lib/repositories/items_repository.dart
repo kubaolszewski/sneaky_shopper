@@ -1,4 +1,4 @@
-import 'package:sneaky_shopper/data/remote_data_sources/items_remote_dio_data_source.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
@@ -8,7 +8,7 @@ class ItemsRepository {
       this._itemsRemoteFirestoreDataSource, this._itemsRemoteDioDataSource);
 
   final ItemsRemoteFirestoreDataSource _itemsRemoteFirestoreDataSource;
-  final ItemsInfoRemoteDioDataSource _itemsRemoteDioDataSource;
+  final ItemsInfoRemoteRetrofitDataSource _itemsRemoteDioDataSource;
 
   Stream<List<ItemModel>> getItemsStream() {
     return _itemsRemoteFirestoreDataSource.getItemsStream();
@@ -19,11 +19,7 @@ class ItemsRepository {
   }
 
   Future<List<ItemInfoModel>> provideRemoteInfo() async {
-    final jsonItemsInfo = await _itemsRemoteDioDataSource.provideRemoteInfo();
-    if (jsonItemsInfo == null) {
-      return [];
-    }
-    return jsonItemsInfo.map((info) => ItemInfoModel.fromJson(info)).toList();
+    return _itemsRemoteDioDataSource.provideRemoteInfo();
   }
 
   Future<void> addProductToList(String name, String price, String size,
