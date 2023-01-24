@@ -1,14 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart';
 import 'package:sneaky_shopper/app/features/item_details/item_details_page.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
+import 'package:sneaky_shopper/app/injection_container.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
-import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
@@ -17,9 +14,8 @@ class ListPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ListPageCubit(ItemsRepository(
-          ItemsRemoteFirestoreDataSource(), ItemsInfoRemoteRetrofitDataSource(Dio())))
+    return BlocProvider<ListPageCubit>(
+      create: (context) => getIt()
         ..start(),
       child: BlocBuilder<ListPageCubit, ListPageState>(
         builder: (context, state) {
@@ -153,7 +149,7 @@ class _ItemWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(itemModel.image),

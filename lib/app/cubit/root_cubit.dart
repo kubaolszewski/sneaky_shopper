@@ -8,9 +8,9 @@ import 'package:sneaky_shopper/repositories/login_repository.dart';
 part 'root_state.dart';
 
 class RootCubit extends Cubit<RootState> {
-  RootCubit(this._loginRepository) : super(const RootState());
+  RootCubit({required this.loginRepository}) : super(const RootState());
 
-  final LoginRepository _loginRepository;
+  final LoginRepository loginRepository;
 
   Future<void> register(
       {required String email,
@@ -25,7 +25,7 @@ class RootCubit extends Cubit<RootState> {
       );
     } else {
       try {
-        await _loginRepository.register(email: email, password: password);
+        await loginRepository.register(email: email, password: password);
         emit(
           const RootState(status: Status.success),
         );
@@ -43,7 +43,7 @@ class RootCubit extends Cubit<RootState> {
 
   Future<void> signIn({required String email, required String password}) async {
     try {
-      await _loginRepository.signIn(email: email, password: password);
+      await loginRepository.signIn(email: email, password: password);
       emit(
         const RootState(status: Status.success),
       );
@@ -59,7 +59,7 @@ class RootCubit extends Cubit<RootState> {
   }
 
   Future<void> signOut() async {
-    _loginRepository.signOut();
+    loginRepository.signOut();
     emit(
       const RootState(status: Status.success),
     );
@@ -106,7 +106,7 @@ class RootCubit extends Cubit<RootState> {
       ),
     );
 
-    _streamSubscription = _loginRepository.authState().listen(
+    _streamSubscription = loginRepository.authState().listen(
       (user) {
         emit(
           RootState(user: user, pageIndex: state.pageIndex),

@@ -8,15 +8,15 @@ import 'package:sneaky_shopper/repositories/items_repository.dart';
 part 'list_page_state.dart';
 
 class ListPageCubit extends Cubit<ListPageState> {
-  ListPageCubit(this._itemsRepository) : super(const ListPageState());
+  ListPageCubit({required this.itemsRepository}) : super(const ListPageState());
 
-  final ItemsRepository _itemsRepository;
+  final ItemsRepository itemsRepository;
 
   StreamSubscription? _streamSubscription;
 
   Future<void> removeProduct({required String id}) async {
     try {
-      await _itemsRepository.removeProduct(id: id);
+      await itemsRepository.removeProduct(id: id);
     } catch (error) {
       emit(
         ListPageState(
@@ -37,7 +37,7 @@ class ListPageCubit extends Cubit<ListPageState> {
       ),
     );
 
-    _streamSubscription = _itemsRepository.getItemsStream().listen(
+    _streamSubscription = itemsRepository.getItemsStream().listen(
       (items) {
         try {
           emit(

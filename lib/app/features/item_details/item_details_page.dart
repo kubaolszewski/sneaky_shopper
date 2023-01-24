@@ -1,13 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
+import 'package:sneaky_shopper/app/injection_container.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
-import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 class ItemDetailsPage extends StatelessWidget {
   const ItemDetailsPage({
@@ -32,11 +29,8 @@ class ItemDetailsPage extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color(0xff2D9A8D),
-      body: BlocProvider(
-        create: (context) => ItemDetailsCubit(ItemsRepository(
-          ItemsRemoteFirestoreDataSource(),
-          ItemsInfoRemoteRetrofitDataSource(Dio()),
-        ))
+      body: BlocProvider<ItemDetailsCubit>(
+        create: (context)  => getIt()
           ..getItemWithID(id: id),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

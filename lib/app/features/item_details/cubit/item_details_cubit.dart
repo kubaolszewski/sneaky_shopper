@@ -6,16 +6,16 @@ import 'package:sneaky_shopper/repositories/items_repository.dart';
 part 'item_details_state.dart';
 
 class ItemDetailsCubit extends Cubit<ItemDetailsState> {
-  ItemDetailsCubit(this._itemsRepository)
+  ItemDetailsCubit({required this.itemsRepository})
       : super(ItemDetailsState(itemDetailsModel: null));
 
-  final ItemsRepository _itemsRepository;
+  final ItemsRepository itemsRepository;
 
   Future<void> getItemWithID(
       {required String id}) async {
     emit(ItemDetailsState(status: Status.loading));
     try {
-      final itemDetailsModel = await _itemsRepository.getDetails(id: id);
+      final itemDetailsModel = await itemsRepository.getDetails(id: id);
       emit(
         ItemDetailsState(
           itemDetailsModel: itemDetailsModel,

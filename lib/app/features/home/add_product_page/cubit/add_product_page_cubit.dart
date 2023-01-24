@@ -6,10 +6,10 @@ import 'package:sneaky_shopper/repositories/items_repository.dart';
 part 'add_product_page_state.dart';
 
 class AddProductPageCubit extends Cubit<AddProductPageState> {
-  AddProductPageCubit(this._itemsRepository)
+  AddProductPageCubit({required this.itemsRepository})
       : super(const AddProductPageState());
 
-  final ItemsRepository _itemsRepository;
+  final ItemsRepository itemsRepository;
 
   Future<void> changeNameValue(String newNameValue) async {
     emit(AddProductPageState(
@@ -17,8 +17,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: state.priceValue,
       sizeValue: state.sizeValue,
       typeValue: state.typeValue,
-            image: state.image,
-
+      image: state.image,
     ));
   }
 
@@ -28,8 +27,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: newPriceValue,
       sizeValue: state.sizeValue,
       typeValue: state.typeValue,
-            image: state.image,
-
+      image: state.image,
     ));
   }
 
@@ -39,8 +37,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       priceValue: state.priceValue,
       sizeValue: newSizeValue,
       typeValue: state.typeValue,
-            image: state.image,
-
+      image: state.image,
     ));
   }
 
@@ -73,7 +70,7 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
   ) async {
     emit(const AddProductPageState(status: Status.loading));
     try {
-      await _itemsRepository.addProductToList(
+      await itemsRepository.addProductToList(
         name,
         price,
         size,

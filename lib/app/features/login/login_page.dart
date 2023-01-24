@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
-import 'package:sneaky_shopper/repositories/login_repository.dart';
+import 'package:sneaky_shopper/app/injection_container.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({
@@ -15,8 +15,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RootCubit(LoginRepository()),
+    return BlocProvider<RootCubit>(
+      create: (context) => getIt(),
       child: BlocBuilder<RootCubit, RootState>(
         builder: (context, state) {
           return Scaffold(

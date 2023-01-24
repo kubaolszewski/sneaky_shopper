@@ -7,7 +7,7 @@ import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_pa
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/catalog_page/catalog_page_content.dart';
-import 'package:sneaky_shopper/repositories/login_repository.dart';
+import 'package:sneaky_shopper/app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RootCubit(LoginRepository()),
+    return BlocProvider<RootCubit>(
+      create: (context) => getIt(),
       child: BlocBuilder<RootCubit, RootState>(
         builder: (context, state) {
           return Scaffold(
