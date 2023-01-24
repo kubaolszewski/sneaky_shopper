@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
+@injectable
 class ItemsRepository {
   ItemsRepository({
       required this.itemsRemoteFirestoreDataSource, required this.itemsRemoteRetrofitDataSource});

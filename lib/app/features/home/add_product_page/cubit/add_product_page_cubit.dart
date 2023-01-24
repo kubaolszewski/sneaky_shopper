@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'add_product_page_state.dart';
 
+@injectable
 class AddProductPageCubit extends Cubit<AddProductPageState> {
   AddProductPageCubit({required this.itemsRepository})
       : super(const AddProductPageState());
