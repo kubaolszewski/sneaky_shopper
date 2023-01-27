@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
 
-class ExpandedInfo extends StatelessWidget {
-  const ExpandedInfo({
+class ItemTypeInfo extends StatelessWidget {
+  const ItemTypeInfo({
     Key? key,
     required this.model,
   }) : super(key: key);

@@ -6,10 +6,13 @@ import 'package:sneaky_shopper/app/features/home/catalog_page/cubit/catalog_page
 import 'package:sneaky_shopper/app/features/home/catalog_page/item_type_content/item_type_info.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
+
 class CatalogPage extends StatelessWidget {
-  const CatalogPage({
+  CatalogPage({
     Key? key,
   }) : super(key: key);
+
+  final List<String> selectionButtons = ['Item types', 'Brands'];
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +37,31 @@ class CatalogPage extends StatelessWidget {
               return ListView(
                 children: [
                   Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Text(
-                        'Items',
-                        style: GoogleFonts.teko(
-                          color: Colors.white,
-                          fontSize: 32,
-                        ),
+                    child: Text(
+                      'Items',
+                      style: GoogleFonts.teko(
+                        color: Colors.white,
+                        fontSize: 36,
                       ),
                     ),
                   ),
+                  // for (final selectedButton in selectionButtons)
+                  //   Padding(
+                  //       padding: const EdgeInsets.all(12.0),
+                  //       child: ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //             backgroundColor: const Color(0xffff97d0)),
+                  //         onPressed: () {
+                  //           // Navigator.of(context).push(MaterialPageRoute(builder: ((context) => SelectedItemTypeInfo))
+                  //         },
+                  //         child: Text(selectedButton,
+                  //             style: GoogleFonts.teko(
+                  //               color: Colors.white,
+                  //               fontSize: 32,
+                  //             )),
+                  //       )),
                   for (final info in state.itemInfo)
-                    _ItemInfoSelection(model: info),
+                    ItemInfoSelection(model: info),
                 ],
               );
             case Status.error:
@@ -66,8 +81,8 @@ class CatalogPage extends StatelessWidget {
   }
 }
 
-class _ItemInfoSelection extends StatelessWidget {
-  const _ItemInfoSelection({
+class ItemInfoSelection extends StatelessWidget {
+  const ItemInfoSelection({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -83,9 +98,11 @@ class _ItemInfoSelection extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ExpandedInfo(model: model),
-          ));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ItemTypeInfo(model: model),
+            ),
+          );
         },
         child: Container(
           decoration: BoxDecoration(

@@ -69,7 +69,7 @@ class ItemDetailsPage extends StatelessWidget {
                         state.errorMessage ?? 'Unknown error occured.',
                         style: GoogleFonts.teko(
                           fontSize: 32,
-                          color: Theme.of(context).errorColor,
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
                     );

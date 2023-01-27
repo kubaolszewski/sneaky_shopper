@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                 );
               }
               if (state.pageIndex == 2) {
-                return const CatalogPage();
+                return CatalogPage();
               }
 
               return MyAccountPageContent(email: user.email);
