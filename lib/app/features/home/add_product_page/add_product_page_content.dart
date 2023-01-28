@@ -27,7 +27,7 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Wpisz nazwę przedmiotu:',
+                      hintText: 'Enter item name:',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
@@ -43,7 +43,7 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Podaj cenę:',
+                      hintText: 'Enter item price:',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
@@ -59,7 +59,7 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Podaj rozmiar:',
+                      hintText: 'Enter item size:',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
@@ -75,7 +75,7 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Podaj typ przedmiotu: ',
+                      hintText: 'Enter item type: ',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
@@ -91,7 +91,7 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Prześlij grafikę',
+                      hintText: 'Enter image URL:',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
@@ -136,7 +136,7 @@ class AddProductPageContent extends StatelessWidget {
                             onSave();
                           },
                     child: Text(
-                      'Dodaj pozycję',
+                      'Add item to the list',
                       style:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),

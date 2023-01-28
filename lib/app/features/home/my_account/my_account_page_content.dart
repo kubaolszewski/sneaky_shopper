@@ -25,7 +25,7 @@ class MyAccountPageContent extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'Jesteś zalogowany jako $email',
+            'You\'re logged in as: $email',
             style: GoogleFonts.teko(color: Colors.white, fontSize: 24),
           ),
           const SizedBox(height: 10),
@@ -73,7 +73,7 @@ class MyAccountPageContent extends StatelessWidget {
               context.read<RootCubit>().signOut();
             },
             child: Text(
-              'Wyloguj się',
+              'Logout',
               style: GoogleFonts.teko(color: Colors.white, fontSize: 32),
             ),
           ),
