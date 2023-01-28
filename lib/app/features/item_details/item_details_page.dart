@@ -121,14 +121,14 @@ class _ProductWidgetDetails extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Cena: ${itemDetailsModel.price} -,',
+                    'Price: ${itemDetailsModel.price} -,',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 30,
                     ),
                   ),
                   Text(
-                    'Rozmiar: ${itemDetailsModel.size}',
+                    'Size: ${itemDetailsModel.size}',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 30,

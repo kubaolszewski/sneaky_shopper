@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                                 fillColor: Color(0xffD9D9D9),
                                 prefixIcon:
                                     Icon(Icons.key, color: Colors.black),
-                                hintText: 'Hasło',
+                                hintText: 'Password',
                                 hintStyle: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16)),
                             cursorColor: Colors.black)),
@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
                               fillColor: Color(0xffD9D9D9),
                               prefixIcon:
                                   Icon(Icons.check, color: Colors.black),
-                              hintText: 'Powtórz hasło',
+                              hintText: 'Confirm password',
                               hintStyle: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
                             context.read<RootCubit>().notCreatingAccount();
                           },
                           child: Text(
-                            'Masz już konto? Zaloguj się',
+                            'Already have and account? Log in',
                             style: GoogleFonts.teko(
                                 color: Colors.white, fontSize: 24),
                           ),
@@ -134,7 +134,7 @@ class LoginPage extends StatelessWidget {
                             context.read<RootCubit>().creatingAccount();
                           },
                           child: Text(
-                            'Nie masz konta? Zarejestruj się',
+                            "Don't have an account? Register",
                             style: GoogleFonts.teko(
                                 color: Colors.white, fontSize: 24),
                           ),
@@ -169,8 +169,8 @@ class LoginPage extends StatelessWidget {
                       },
                       child: Text(
                         state.isCreatingAccount == true
-                            ? 'Zarejestruj się'
-                            : 'Zaloguj się',
+                            ? 'Register'
+                            : 'Login',
                         style:
                             GoogleFonts.teko(color: Colors.black, fontSize: 32),
                       ),

@@ -36,7 +36,7 @@ class ListPageContent extends StatelessWidget {
               if (state.items.isEmpty) {
                 return Center(
                   child: Text(
-                    'Coś tutaj pusto :/',
+                    'There is something missing here :/',
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 32,
@@ -54,7 +54,7 @@ class ListPageContent extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Text(
-                        'Twoja lista:',
+                        'Your list:',
                         style: GoogleFonts.teko(
                           color: Colors.white,
                           fontSize: 32,

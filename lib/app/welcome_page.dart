@@ -40,7 +40,7 @@ class WelcomePage extends StatelessWidget {
                   backgroundColor: const Color(0xff2D9A8D),
                 ),
                 child: Text(
-                  "Zaczynamy",
+                  "Welcome",
                   style: GoogleFonts.teko(color: Colors.white, fontSize: 32),
                 ),
                 onPressed: () {

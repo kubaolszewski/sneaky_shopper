@@ -80,27 +80,27 @@ class HomePage extends StatelessWidget {
                   BottomNavigationBarItem(
                     backgroundColor:  Color(0xff03675B),
                     icon: Icon(Icons.list, size: 28),
-                    label: 'Lista',
+                    label: 'List',
                   ),
                   BottomNavigationBarItem(
                     backgroundColor:  Color(0xff03675B),
                     icon: Icon(Icons.shopping_cart_sharp, size: 28),
-                    label: 'Dodaj produkt',
+                    label: 'Add product',
                   ),
                   BottomNavigationBarItem(
                     backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.search, size: 28),
-                    label: 'Przedmioty',
+                    label: 'Items',
                   ),
                    BottomNavigationBarItem(
                     backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.image_search, size: 28),
-                    label: 'Marki',
+                    label: 'Brands',
                   ),
                   BottomNavigationBarItem(
                     backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.person, size: 28),
-                    label: 'Moje konto',
+                    label: 'My account',
                   ),
                 ],
               ),
