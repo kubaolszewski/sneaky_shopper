@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 
@@ -17,7 +18,19 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RootCubit>(
       create: (context) => getIt(),
-      child: BlocBuilder<RootCubit, RootState>(
+      child: BlocConsumer<RootCubit, RootState>(
+        listener: (context, state) {
+          if (state.status == Status.error) {
+            final errorMessage = state.errorMessage;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    errorMessage,
+                  )),
+            );
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             backgroundColor: const Color(0xff2D9A8D),
@@ -168,20 +181,9 @@ class LoginPage extends StatelessWidget {
                         }
                       },
                       child: Text(
-                        state.isCreatingAccount == true
-                            ? 'Register'
-                            : 'Login',
+                        state.isCreatingAccount == true ? 'Register' : 'Login',
                         style:
-                            GoogleFonts.teko(color: Colors.black, fontSize: 32),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        state.errorMessage,
-                        style:
-                            GoogleFonts.teko(color: Colors.white, fontSize: 20),
+                            GoogleFonts.teko(color: Colors.white, fontSize: 32),
                       ),
                     ),
                   ],
