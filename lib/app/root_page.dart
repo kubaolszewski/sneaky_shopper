@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/home_page.dart';
 import 'package:sneaky_shopper/app/features/login/login_page.dart';
-import 'package:sneaky_shopper/repositories/login_repository.dart';
+import 'package:sneaky_shopper/app/injection_container.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({
@@ -12,8 +12,8 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RootCubit(LoginRepository())..start(),
+    return BlocProvider<RootCubit>(
+      create: (context) => getIt()..start(),
       child: BlocBuilder<RootCubit, RootState>(
         builder: (context, state) {
           final user = state.user;
