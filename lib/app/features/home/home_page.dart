@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/catalog_page/browsing_pages/brand_selection.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
-import 'package:sneaky_shopper/app/features/home/catalog_page/catalog_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/catalog_page/browsing_pages/item_type_selection.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,9 +49,15 @@ class HomePage extends StatelessWidget {
                   },
                 );
               }
+
               if (state.pageIndex == 2) {
-                return CatalogPage();
+                return const ItemType();
               }
+
+              if (state.pageIndex == 3) {
+                return const BrandPage();
+              }
+
 
               return MyAccountPageContent(email: user.email);
             }),
@@ -83,7 +90,12 @@ class HomePage extends StatelessWidget {
                   BottomNavigationBarItem(
                     backgroundColor: Color(0xff03675B),
                     icon: Icon(Icons.search, size: 28),
-                    label: 'Przeglądaj',
+                    label: 'Przedmioty',
+                  ),
+                   BottomNavigationBarItem(
+                    backgroundColor: Color(0xff03675B),
+                    icon: Icon(Icons.image_search, size: 28),
+                    label: 'Marki',
                   ),
                   BottomNavigationBarItem(
                     backgroundColor: Color(0xff03675B),

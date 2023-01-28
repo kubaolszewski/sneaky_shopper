@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
+import 'package:sneaky_shopper/app/features/home/catalog_page/browsing_pages/brand_info_content.dart';
 import 'package:sneaky_shopper/app/features/home/catalog_page/cubit/catalog_page_cubit.dart';
-import 'package:sneaky_shopper/app/features/home/catalog_page/item_type_content/item_type_info.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
-import 'package:sneaky_shopper/models/item_info_model.dart';
+import 'package:sneaky_shopper/models/brand_model.dart';
 
-class CatalogPage extends StatelessWidget {
-  CatalogPage({
+class BrandPage extends StatelessWidget {
+  const BrandPage({
     Key? key,
   }) : super(key: key);
-
-  final List<String> selectionButtons = ['Item types', 'Brands'];
 
   @override
   Widget build(BuildContext context) {
@@ -38,30 +36,15 @@ class CatalogPage extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      'Items',
+                      'Brands',
                       style: GoogleFonts.teko(
                         color: Colors.white,
-                        fontSize: 36,
+                        fontSize: 32,
                       ),
                     ),
                   ),
-                  // for (final selectedButton in selectionButtons)
-                  //   Padding(
-                  //       padding: const EdgeInsets.all(12.0),
-                  //       child: ElevatedButton(
-                  //         style: ElevatedButton.styleFrom(
-                  //             backgroundColor: const Color(0xffff97d0)),
-                  //         onPressed: () {
-                  //           // Navigator.of(context).push(MaterialPageRoute(builder: ((context) => SelectedItemTypeInfo))
-                  //         },
-                  //         child: Text(selectedButton,
-                  //             style: GoogleFonts.teko(
-                  //               color: Colors.white,
-                  //               fontSize: 32,
-                  //             )),
-                  //       )),
-                  for (final info in state.itemInfo)
-                    ItemInfoSelection(model: info),
+                  for (final brand in state.brandsInfo)
+                    _BrandSelection(brand: brand),
                 ],
               );
             case Status.error:
@@ -81,13 +64,13 @@ class CatalogPage extends StatelessWidget {
   }
 }
 
-class ItemInfoSelection extends StatelessWidget {
-  const ItemInfoSelection({
+class _BrandSelection extends StatelessWidget {
+  const _BrandSelection({
     Key? key,
-    required this.model,
+    required this.brand,
   }) : super(key: key);
 
-  final ItemInfoModel model;
+  final BrandModel brand;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +83,7 @@ class ItemInfoSelection extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ItemTypeInfo(model: model),
+              builder: (context) => BrandInfoContent(brand: brand),
             ),
           );
         },
@@ -115,12 +98,12 @@ class ItemInfoSelection extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(model.image),
+                  backgroundImage: NetworkImage(brand.image),
                   radius: 60,
                 ),
               ),
               Text(
-                model.type,
+                brand.brandName,
                 style: GoogleFonts.teko(
                   color: Colors.white,
                   fontSize: 32,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
 
-class ItemTypeInfo extends StatelessWidget {
-  const ItemTypeInfo({
+class ItemTypeInfoContent extends StatelessWidget {
+  const ItemTypeInfoContent({
     Key? key,
     required this.model,
   }) : super(key: key);
@@ -43,10 +43,19 @@ class ItemTypeInfo extends StatelessWidget {
                     ),
                   ),
                   Text(
+                    textAlign: TextAlign.center,
                     model.type,
                     style: GoogleFonts.teko(
                       color: Colors.white,
-                      fontSize: 30,
+                      fontSize: 32,
+                    ),
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    model.type,
+                    style: GoogleFonts.teko(
+                      color: Colors.white,
+                      fontSize: 32,
                     ),
                   ),
                   Padding(

@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   fixedSize: const Size(224, 48),
-                  backgroundColor: const Color(0xffff40ac),
+                  backgroundColor: const Color(0xff2D9A8D),
                 ),
                 child: Text(
                   "Zaczynamy",
