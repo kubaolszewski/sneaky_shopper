@@ -4,8 +4,10 @@ class ItemDetailsState {
   ItemDetailsState({
     this.itemDetailsModel,
     this.status = Status.initial,
+    this.errorMessage = '',
   });
 
-  final ItemDetailsModel? itemDetailsModel;
+  final ItemModel? itemDetailsModel;
   final Status status;
+  final String? errorMessage;
 }

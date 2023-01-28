@@ -74,7 +74,7 @@ class MyAccountPageContent extends StatelessWidget {
             },
             child: Text(
               'Wyloguj się',
-              style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
+              style: GoogleFonts.teko(color: Colors.white, fontSize: 32),
             ),
           ),
         ],

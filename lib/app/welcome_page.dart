@@ -37,11 +37,11 @@ class WelcomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   fixedSize: const Size(224, 48),
-                  backgroundColor: const Color(0xffff40ac),
+                  backgroundColor: const Color(0xff2D9A8D),
                 ),
                 child: Text(
                   "Zaczynamy",
-                  style: GoogleFonts.teko(color: Colors.black, fontSize: 32),
+                  style: GoogleFonts.teko(color: Colors.white, fontSize: 32),
                 ),
                 onPressed: () {
                   Navigator.of(context).push(

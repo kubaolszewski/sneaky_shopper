@@ -1,23 +1,20 @@
-// ignore_for_file: override_on_non_overriding_member, annotate_overrides
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/cubit/add_product_page_cubit.dart';
-import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-import 'package:sneaky_shopper/repositories/items_repository.dart';
-
+import 'package:sneaky_shopper/app/injection_container.dart';
 class AddProductPageContent extends StatelessWidget {
   const AddProductPageContent({
     Key? key,
     required this.onSave,
   }) : super(key: key);
 
-  @override
   final Function onSave;
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddProductPageCubit(ItemsRepository(ItemsRemoteFirestoreDataSource()))..start(),
+    return BlocProvider<AddProductPageCubit>(
+      create: (context) => getIt()..start(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {
           return Center(
@@ -30,15 +27,15 @@ class AddProductPageContent extends StatelessWidget {
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color(0xff85c8c9),
-                      hintText: 'Wpisz nazwę modelu:',
+                      hintText: 'Wpisz nazwę przedmiotu:',
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting name of shoes
-                    onChanged: (newNameValue) {
+                    // setting name of an item
+                    onChanged: (nameValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changeNameValue(newNameValue);
+                          .changeNameValue(nameValue);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -50,11 +47,11 @@ class AddProductPageContent extends StatelessWidget {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting price of shoes
-                    onChanged: (newPriceValue) {
+                    // setting price of an item
+                    onChanged: (priceValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changePriceValue(newPriceValue);
+                          .changePriceValue(priceValue);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -66,11 +63,43 @@ class AddProductPageContent extends StatelessWidget {
                       hintStyle:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                    // setting size of shoes
-                    onChanged: (newSizeValue) {
+                    // setting size of an item
+                    onChanged: (sizeValue) {
                       context
                           .read<AddProductPageCubit>()
-                          .changeSizeValue(newSizeValue);
+                          .changeSizeValue(sizeValue);
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xff85c8c9),
+                      hintText: 'Podaj typ przedmiotu: ',
+                      hintStyle:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                    // setting type of an item
+                    onChanged: (typeValue) {
+                      context
+                          .read<AddProductPageCubit>()
+                          .setTypeValue(typeValue);
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xff85c8c9),
+                      hintText: 'Prześlij grafikę',
+                      hintStyle:
+                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
+                    ),
+                    // upload an image of item
+                    onChanged: (imageInput) {
+                      context
+                          .read<AddProductPageCubit>()
+                          .imageInput(imageInput);
                     },
                   ),
                   const SizedBox(height: 10),
@@ -88,15 +117,22 @@ class AddProductPageContent extends StatelessWidget {
                     ),
                     onPressed: state.nameValue.isEmpty ||
                             state.priceValue.isEmpty ||
-                            state.sizeValue.isEmpty
+                            state.sizeValue.isEmpty ||
+                            state.typeValue.isEmpty ||
+                            state.image.isEmpty
                         ? null
                         :
                         // adding an item to the list
                         () {
-                            context.read<AddProductPageCubit>().addProduct(
-                                state.nameValue,
-                                state.priceValue,
-                                state.sizeValue);
+                            context
+                                .read<AddProductPageCubit>()
+                                .addProductToList(
+                                  state.nameValue,
+                                  state.priceValue,
+                                  state.sizeValue,
+                                  state.typeValue,
+                                  state.image,
+                                );
                             onSave();
                           },
                     child: Text(

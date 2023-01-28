@@ -1,46 +1,41 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
+import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-import 'package:sneaky_shopper/models/item_details_model.dart';
+import 'package:sneaky_shopper/models/brand_model.dart';
+import 'package:sneaky_shopper/models/item_info_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
+@injectable
 class ItemsRepository {
-  ItemsRepository(this._itemsRemoteDataSource);
+  ItemsRepository({
+      required this.itemsRemoteFirestoreDataSource, required this.itemsRemoteRetrofitDataSource});
 
-  final ItemsRemoteFirestoreDataSource _itemsRemoteDataSource;
+  final ItemsRemoteFirestoreDataSource itemsRemoteFirestoreDataSource;
+  final ItemsInfoRemoteRetrofitDataSource itemsRemoteRetrofitDataSource;
 
   Stream<List<ItemModel>> getItemsStream() {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in.');
-    }
-    return _itemsRemoteDataSource.getItemsStream();
+    return itemsRemoteFirestoreDataSource.getItemsStream();
   }
 
-  Future<ItemDetailsModel> getDetails({required String id}) async {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in.');
-    }
-    return _itemsRemoteDataSource.getDetails(id: id);
+  Future<ItemModel> getDetails({required String id}) async {
+    return itemsRemoteFirestoreDataSource.getDetails(id: id);
   }
 
-  Future<void> addProduct(
-    String name,
-    String price,
-    String size,
-  ) async {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in.');
-    }
-    return _itemsRemoteDataSource.addProduct(name, price, size);
+  Future<List<ItemInfoModel>> provideRemoteInfo() async {
+    return itemsRemoteRetrofitDataSource.provideRemoteInfo();
+  }
+
+  Future<List<BrandModel>> provideBrands() async {
+    return itemsRemoteRetrofitDataSource.provideBrands();
+  }
+
+  Future<void> addProductToList(String name, String price, String size,
+      String itemType, String image) async {
+    return itemsRemoteFirestoreDataSource.addProductToList(
+        name, price, size, itemType, image);
   }
 
   Future<void> removeProduct({required String id}) {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('User is not logged in.');
-    }
-    return _itemsRemoteDataSource.removeProduct(id: id);
+    return itemsRemoteFirestoreDataSource.removeProduct(id: id);
   }
 }

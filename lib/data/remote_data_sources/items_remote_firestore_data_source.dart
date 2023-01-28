@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sneaky_shopper/models/item_details_model.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
+@injectable
 class ItemsRemoteFirestoreDataSource {
   Stream<List<ItemModel>> getItemsStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
@@ -13,23 +14,27 @@ class ItemsRemoteFirestoreDataSource {
         .collection('users')
         .doc(userID)
         .collection('items')
-        .orderBy('price', descending: true)
+        .orderBy('item_type', descending: false)
         .snapshots()
-        .map((querySnapshot) {
-      return querySnapshot.docs.map(
-        (doc) {
-          return ItemModel(
-            id: doc.id,
-            image: doc['image'],
-            itemType: doc['item_type'],
-            name: doc['name'],
-          );
-        },
-      ).toList();
-    });
+        .map(
+      (querySnapshot) {
+        return querySnapshot.docs.map(
+          (doc) {
+            return ItemModel(
+              id: doc.id,
+              name: doc['name'],
+              price: doc['price'],
+              size: doc['size'],
+              itemType: doc['item_type'],
+              image: doc['image'],
+            );
+          },
+        ).toList();
+      },
+    );
   }
 
-  Future<ItemDetailsModel> getDetails({required String id}) async {
+  Future<ItemModel> getDetails({required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       throw Exception('User is not logged in.');
@@ -40,20 +45,22 @@ class ItemsRemoteFirestoreDataSource {
         .collection('items')
         .doc(id)
         .get();
-    return ItemDetailsModel(
-      image: doc['image'],
-      itemType: doc['item_type'],
+    return ItemModel(
+      id: id,
       name: doc['name'],
       price: doc['price'],
       size: doc['size'],
-      //description: doc['description']
+      itemType: doc['item_type'],
+      image: doc['image'],
     );
   }
 
-  Future<void> addProduct(
+  Future<void> addProductToList(
     String name,
     String price,
     String size,
+    String itemType,
+    String image,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -68,6 +75,8 @@ class ItemsRemoteFirestoreDataSource {
         'name': name,
         'price': price,
         'size': size,
+        'item_type': itemType,
+        'image': image,
       },
     );
   }
