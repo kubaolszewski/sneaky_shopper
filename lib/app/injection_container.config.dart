@@ -15,7 +15,7 @@ import 'package:sneaky_shopper/app/features/home/catalog_page/cubit/catalog_page
     as _i11;
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart'
     as _i9;
-import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart'
+import 'package:sneaky_shopper/app/features/home/list_page/item_details/cubit/item_details_cubit.dart'
     as _i12;
 import 'package:sneaky_shopper/app/injection_container.dart' as _i13;
 import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart'

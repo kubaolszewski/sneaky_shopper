@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
-import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
+import 'package:sneaky_shopper/app/features/home/list_page/item_details/cubit/item_details_cubit.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
