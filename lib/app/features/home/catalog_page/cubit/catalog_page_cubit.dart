@@ -1,11 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/models/brand_model.dart';
 import 'package:sneaky_shopper/models/item_info_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'catalog_page_state.dart';
+
+part 'catalog_page_cubit.freezed.dart';
+
 
 class CatalogPageCubit extends Cubit<CatalogPageState> {
   CatalogPageCubit({required this.itemsRepository})

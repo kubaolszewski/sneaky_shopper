@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'list_page_state.dart';
+
+part 'list_page_cubit.freezed.dart';
 
 class ListPageCubit extends Cubit<ListPageState> {
   ListPageCubit({required this.itemsRepository}) : super(const ListPageState());

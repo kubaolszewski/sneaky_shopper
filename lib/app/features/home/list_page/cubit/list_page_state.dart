@@ -1,13 +1,10 @@
 part of 'list_page_cubit.dart';
 
-class ListPageState {
-  const ListPageState({
-    this.items = const [],
-    this.status = Status.initial,
-    this.errorMessage = '',
-  });
-
-  final List<ItemModel> items;
-  final Status status;
-  final String errorMessage;
+@freezed
+class ListPageState with _$ListPageState {
+  const factory ListPageState({
+    @Default([]) List<ItemModel> items,
+    @Default(Status.initial) Status status,
+    @Default('') String errorMessage,
+  }) = _ListPageState;
 }

@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'add_product_page_state.dart';
+
+part 'add_product_page_cubit.freezed.dart';
 
 class AddProductPageCubit extends Cubit<AddProductPageState> {
   AddProductPageCubit({required this.itemsRepository})

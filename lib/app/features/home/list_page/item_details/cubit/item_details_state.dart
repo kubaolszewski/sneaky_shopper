@@ -1,13 +1,10 @@
 part of 'item_details_cubit.dart';
 
-class ItemDetailsState {
-  ItemDetailsState({
-    this.itemDetailsModel,
-    this.status = Status.initial,
-    this.errorMessage = '',
-  });
-
-  final ItemModel? itemDetailsModel;
-  final Status status;
-  final String? errorMessage;
+@freezed
+class ItemDetailsState with _$ItemDetailsState {
+  const factory ItemDetailsState({
+    ItemModel? itemDetailsModel,
+    @Default(Status.initial) Status status,
+     String? errorMessage,
+  }) = _ItemDetailsState;
 }

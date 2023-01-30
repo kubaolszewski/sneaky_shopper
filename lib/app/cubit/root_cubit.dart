@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 part 'root_state.dart';
+
+part 'root_cubit.freezed.dart';
 
 class RootCubit extends Cubit<RootState> {
   RootCubit({required this.loginRepository}) : super(const RootState());
