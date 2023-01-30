@@ -120,7 +120,7 @@ class _ItemTypeSelection extends StatelessWidget {
                 ),
               ),
               Text(
-                model.type,
+                model.itemType,
                 style: GoogleFonts.teko(
                   color: Colors.white,
                   fontSize: 32,

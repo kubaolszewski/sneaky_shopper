@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
+// import 'package:iconsax/iconsax.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 
 class MyAccountPageContent extends StatelessWidget {
@@ -28,36 +28,36 @@ class MyAccountPageContent extends StatelessWidget {
             'You\'re logged in as: $email',
             style: GoogleFonts.teko(color: Colors.white, fontSize: 24),
           ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings, color: Colors.white),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.privacy_tip, color: Colors.white),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Iconsax.medal5, color: Colors.white),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          // const SizedBox(height: 10),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Column(
+          //       children: [
+          //         IconButton(
+          //           onPressed: () {},
+          //           icon: const Icon(Icons.settings, color: Colors.white),
+          //         ),
+          //       ],
+          //     ),
+          //     Column(
+          //       children: [
+          //         IconButton(
+          //           onPressed: () {},
+          //           icon: const Icon(Icons.privacy_tip, color: Colors.white),
+          //         ),
+          //       ],
+          //     ),
+          //     Column(
+          //       children: [
+          //         IconButton(
+          //           onPressed: () {},
+          //           icon: const Icon(Iconsax.medal5, color: Colors.white),
+          //         ),
+          //       ],
+          //     ),
+          //   ],
+          // ),
           const SizedBox(height: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
