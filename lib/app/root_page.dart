@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/home_page.dart';
-import 'package:sneaky_shopper/app/features/login/login_page.dart';
+import 'package:sneaky_shopper/app/login_page.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 
 class RootPage extends StatelessWidget {
