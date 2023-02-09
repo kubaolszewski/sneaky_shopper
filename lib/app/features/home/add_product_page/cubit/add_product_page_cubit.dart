@@ -89,18 +89,4 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
       );
     }
   }
-
-  Future<void> start() async {
-    emit(const AddProductPageState(status: Status.loading));
-    try {
-      emit(const AddProductPageState(
-        status: Status.success,
-      ));
-    } catch (error) {
-      emit(AddProductPageState(
-        status: Status.error,
-        errorMessage: error.toString(),
-      ));
-    }
-  }
 }

@@ -14,7 +14,7 @@ class AddProductPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AddProductPageCubit>(
-      create: (context) => getIt()..start(),
+      create: (context) => getIt(),
       child: BlocBuilder<AddProductPageCubit, AddProductPageState>(
         builder: (context, state) {
           return Center(
