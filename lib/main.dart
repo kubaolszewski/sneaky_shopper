@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.pink,
       ),
       home: const WelcomePage(),
     );

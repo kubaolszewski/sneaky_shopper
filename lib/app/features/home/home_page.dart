@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
           return Scaffold(
             backgroundColor: const Color(0xff2D9A8D),
             appBar: AppBar(
+              elevation: 8.0,
               backgroundColor: const Color(0xff03675B),
               title: Text(
                 'Sneaky Shopper',

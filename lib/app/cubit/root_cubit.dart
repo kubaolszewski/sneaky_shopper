@@ -122,10 +122,12 @@ class RootCubit extends Cubit<RootState> {
       },
     )..onError(
         (error) {
-          emit(RootState(
+          emit(
+            RootState(
               status: Status.error,
               errorMessage: error.toString(),
-              pageIndex: state.pageIndex));
+            ),
+          );
         },
       );
   }

@@ -167,14 +167,14 @@ class LoginPage extends StatelessWidget {
                       ),
                       onPressed: () async {
                         if (state.isCreatingAccount == true) {
-                          // rejestracja
+                          // registration
                           context.read<RootCubit>().register(
                                 email: emailController.text,
                                 password: passwordController.text,
                                 confirmPassword: confirmPasswordController.text,
                               );
                         } else {
-                          // logowanie
+                          // login
                           context.read<RootCubit>().signIn(
                               email: emailController.text,
                               password: passwordController.text);
