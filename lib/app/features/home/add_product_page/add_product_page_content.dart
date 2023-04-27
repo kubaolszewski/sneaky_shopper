@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/cubit/add_product_page_cubit.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
+
 class AddProductPageContent extends StatelessWidget {
   const AddProductPageContent({
     Key? key,
@@ -23,15 +24,9 @@ class AddProductPageContent extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xff85c8c9),
-                      hintText: 'Enter item name:',
-                      hintStyle:
-                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
-                    ),
-                    // setting name of an item
+                  _ThemedTextField(
+                    hintText: 'Enter item name:',
+                    // setting name of a clothing
                     onChanged: (nameValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -39,15 +34,9 @@ class AddProductPageContent extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xff85c8c9),
-                      hintText: 'Enter item price:',
-                      hintStyle:
-                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
-                    ),
-                    // setting price of an item
+                  _ThemedTextField(
+                    hintText: 'Enter item price:',
+                    // setting price of a clothing
                     onChanged: (priceValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -55,15 +44,9 @@ class AddProductPageContent extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xff85c8c9),
-                      hintText: 'Enter item size:',
-                      hintStyle:
-                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
-                    ),
-                    // setting size of an item
+                  _ThemedTextField(
+                    hintText: 'Enter item size: ',
+                    // setting size of a clothing
                     onChanged: (sizeValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -71,15 +54,9 @@ class AddProductPageContent extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xff85c8c9),
-                      hintText: 'Enter item type: ',
-                      hintStyle:
-                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
-                    ),
-                    // setting type of an item
+                  _ThemedTextField(
+                    hintText: 'Enter item type: ',
+                    // setting type of a clothing
                     onChanged: (typeValue) {
                       context
                           .read<AddProductPageCubit>()
@@ -87,15 +64,9 @@ class AddProductPageContent extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xff85c8c9),
-                      hintText: 'Enter image URL:',
-                      hintStyle:
-                          GoogleFonts.teko(color: Colors.white, fontSize: 24),
-                    ),
-                    // upload an image of item
+                  _ThemedTextField(
+                    hintText: 'Enter image URL:',
+                    // upload an image of a clothing
                     onChanged: (imageInput) {
                       context
                           .read<AddProductPageCubit>()
@@ -140,7 +111,7 @@ class AddProductPageContent extends StatelessWidget {
                       style:
                           GoogleFonts.teko(color: Colors.white, fontSize: 24),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -148,5 +119,31 @@ class AddProductPageContent extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class _ThemedTextField extends StatelessWidget {
+  const _ThemedTextField({
+    Key? key,
+    required this.hintText,
+    required this.onChanged,
+  }) : super(key: key);
+
+  final String hintText;
+  final Function onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: const Color(0xff85c8c9),
+          hintText: hintText,
+          hintStyle: GoogleFonts.teko(color: Colors.white, fontSize: 24),
+        ),
+        // setting properties of added clothing
+        onChanged: (requiredValue) {
+          onChanged(requiredValue);
+        });
   }
 }
