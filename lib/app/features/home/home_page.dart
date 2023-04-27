@@ -37,77 +37,88 @@ class HomePage extends StatelessWidget {
               automaticallyImplyLeading: false,
               centerTitle: true,
             ),
-            body: Builder(builder: (context) {
-              if (state.pageIndex == 0) {
-                return const ListPageContent();
-              }
+            body: Builder(
+              builder: (context) {
+                if (state.pageIndex == 0) {
+                  return const ListPageContent();
+                }
 
-              if (state.pageIndex == 1) {
-                return AddProductPageContent(
-                  onSave: () {
-                    //change app page when an item is added to the list
-                    context.read<RootCubit>().changeIndexOnSave(0);
-                  },
-                );
-              }
+                if (state.pageIndex == 1) {
+                  return AddProductPageContent(
+                    onSave: () {
+                      //change app page when an item is added to the list
+                      context.read<RootCubit>().changeIndexOnSave(0);
+                    },
+                  );
+                }
 
-              if (state.pageIndex == 2) {
-                return const ItemType();
-              }
+                if (state.pageIndex == 2) {
+                  return const ItemType();
+                }
 
-              if (state.pageIndex == 3) {
-                return const BrandPage();
-              }
+                if (state.pageIndex == 3) {
+                  return const BrandPage();
+                }
 
-              return MyAccountPageContent(email: user.email);
-            }),
-            bottomNavigationBar: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: const Color(0xff03675B),
-                textTheme: Theme.of(context).textTheme.copyWith(),
-              ),
-              child: BottomNavigationBar(
-                selectedLabelStyle: GoogleFonts.teko(fontSize: 16),
-                unselectedLabelStyle: GoogleFonts.teko(fontSize: 16),
-                selectedItemColor: const Color(0xffff40ac),
-                unselectedItemColor: Colors.white,
-                currentIndex: state.pageIndex,
-                onTap: (newPageIndex) {
-                  // function that controls indexes for BottomNavigationBar
-                  context.read<RootCubit>().changeIndexOnSave(newPageIndex);
-                },
-                items: const [
-                  BottomNavigationBarItem(
-                    backgroundColor: Color(0xff03675B),
-                    icon: Icon(Icons.list, size: 28),
-                    label: 'List',
-                  ),
-                  BottomNavigationBarItem(
-                    backgroundColor: Color(0xff03675B),
-                    icon: Icon(Icons.shopping_cart_sharp, size: 28),
-                    label: 'Add item',
-                  ),
-                  BottomNavigationBarItem(
-                    backgroundColor: Color(0xff03675B),
-                    icon: Icon(Icons.search, size: 28),
-                    label: 'Item types',
-                  ),
-                  BottomNavigationBarItem(
-                    backgroundColor: Color(0xff03675B),
-                    icon: Icon(Icons.image_search, size: 28),
-                    label: 'Brands',
-                  ),
-                  BottomNavigationBarItem(
-                    backgroundColor: Color(0xff03675B),
-                    icon: Icon(Icons.person, size: 28),
-                    label: 'My account',
-                  ),
-                ],
-              ),
+                return MyAccountPageContent(email: user.email);
+              },
             ),
+            bottomNavigationBar: _CustomNavBar(pageIndex: state.pageIndex),
           );
         },
       ),
+    );
+  }
+}
+
+class _CustomNavBar extends StatelessWidget {
+  const _CustomNavBar({
+    Key? key,
+    required this.pageIndex,
+  }) : super(key: key);
+
+  final int pageIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      selectedLabelStyle: GoogleFonts.teko(fontSize: 16),
+      unselectedLabelStyle: GoogleFonts.teko(fontSize: 16),
+      selectedItemColor: const Color(0xffff40ac),
+      unselectedItemColor: Colors.white,
+      iconSize: 28,
+      currentIndex: pageIndex,
+      onTap: (newPageIndex) {
+        // function that controls indexes for BottomNavigationBar
+        context.read<RootCubit>().changeIndexOnSave(newPageIndex);
+      },
+      items: const [
+        BottomNavigationBarItem(
+          backgroundColor: Color(0xff03675B),
+          icon: Icon(Icons.list),
+          label: 'List',
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: Color(0xff03675B),
+          icon: Icon(Icons.shopping_cart_sharp),
+          label: 'Add item',
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: Color(0xff03675B),
+          icon: Icon(Icons.search),
+          label: 'Item types',
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: Color(0xff03675B),
+          icon: Icon(Icons.image_search),
+          label: 'Brands',
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: Color(0xff03675B),
+          icon: Icon(Icons.person),
+          label: 'My account',
+        ),
+      ],
     );
   }
 }
