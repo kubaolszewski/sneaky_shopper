@@ -10,10 +10,4 @@ abstract class ItemsInfoRemoteRetrofitDataSource {
   @factoryMethod
   factory ItemsInfoRemoteRetrofitDataSource(Dio dio) =
       _ItemsInfoRemoteRetrofitDataSource;
-
-  // @GET("/products")
-  // Future<List<ItemInfoModel>> provideRemoteInfo();
-
-  // @GET("/brands")
-  // Future<List<BrandModel>> provideBrands();
 }

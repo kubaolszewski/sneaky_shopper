@@ -18,14 +18,6 @@ class ItemsRepository {
     return itemsRemoteFirestoreDataSource.getDetails(id: id);
   }
 
-  // Future<List<ItemInfoModel>> provideRemoteInfo() async {
-  //   return itemsRemoteRetrofitDataSource.provideRemoteInfo();
-  // }
-
-  // Future<List<BrandModel>> provideBrands() async {
-  //   return itemsRemoteRetrofitDataSource.provideBrands();
-  // }
-
   Future<void> addProductToList(String name, String price, String size,
       String itemType, String image) async {
     return itemsRemoteFirestoreDataSource.addProductToList(
