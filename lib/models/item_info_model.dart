@@ -6,8 +6,10 @@ part 'item_info_model.freezed.dart';
 
 @freezed
 class ItemInfoModel with _$ItemInfoModel {
+  
+  @JsonSerializable(fieldRename: FieldRename.snake)
   factory ItemInfoModel(
-  @JsonKey(name: 'item_type') final String type,
+  final String itemType,
   final String image,
   final String description,
   ) = _ItemInfoModel;

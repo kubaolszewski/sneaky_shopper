@@ -8,12 +8,15 @@ App contains functionalities of e.g.adding products to your personal list of ite
 Currently searching for API to implement in the app for better experience. Future plans to
 release the app on Google Play and App Store to a wide amount of possible users.
 
-### Technologies used
+### Technologies used:
 - Dart
 - Flutter 
 - Firebase
 - Bloc & Cubit
-- Dio & Rest API (work in progress)
+- Dio 
+- Rest API
+- Code generators e.g. Freezed, Retrofit, Get It, Injectable
+- Unit tests (work in progress)
 
 ## App preview
 

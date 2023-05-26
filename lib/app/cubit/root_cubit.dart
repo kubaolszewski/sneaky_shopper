@@ -2,26 +2,29 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:injectable/injectable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/login_repository.dart';
 
 part 'root_state.dart';
 
-@injectable
+part 'root_cubit.freezed.dart';
+
 class RootCubit extends Cubit<RootState> {
   RootCubit({required this.loginRepository}) : super(const RootState());
 
   final LoginRepository loginRepository;
 
-  Future<void> register(
-      {required String email,
-      required String password,
-      required String confirmPassword}) async {
+  Future<void> register({
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
     if (password.trim() != confirmPassword.trim()) {
       emit(
         const RootState(
-          errorMessage: 'Passwords don\'t match.',
+          status: Status.error,
+          errorMessage: 'Passwords don\'t match',
           isCreatingAccount: true,
         ),
       );
@@ -43,7 +46,10 @@ class RootCubit extends Cubit<RootState> {
     }
   }
 
-  Future<void> signIn({required String email, required String password}) async {
+  Future<void> signIn({
+    required String email,
+    required String password,
+  }) async {
     try {
       await loginRepository.signIn(email: email, password: password);
       emit(
@@ -116,10 +122,12 @@ class RootCubit extends Cubit<RootState> {
       },
     )..onError(
         (error) {
-          emit(RootState(
+          emit(
+            RootState(
               status: Status.error,
               errorMessage: error.toString(),
-              pageIndex: state.pageIndex));
+            ),
+          );
         },
       );
   }

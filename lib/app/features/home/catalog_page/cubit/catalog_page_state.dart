@@ -1,16 +1,12 @@
 part of 'catalog_page_cubit.dart';
 
-@immutable
-class CatalogPageState {
-  const CatalogPageState({
-    this.itemInfo = const [],
-    this.brandsInfo = const [],
-    this.status = Status.initial,
-    this.errorMessage = '',
-  });
-
-  final List<ItemInfoModel> itemInfo;
-  final List<BrandModel> brandsInfo;
-  final Status status;
-  final String errorMessage;
+@freezed
+class CatalogPageState with _$CatalogPageState {
+  const factory CatalogPageState({
+    @Default([]) List<ItemInfoModel> itemInfo,
+    @Default([]) List<BrandModel> brandsInfo,
+    @Default(Status.initial) Status status,
+    @Default('') String errorMessage,
+  }) = _CatalogPageState;
 }
+

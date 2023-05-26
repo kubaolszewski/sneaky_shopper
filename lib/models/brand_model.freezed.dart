@@ -21,7 +21,6 @@ BrandModel _$BrandModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BrandModel {
   String get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'brand_name')
   String get brandName => throw _privateConstructorUsedError;
   String get field => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -38,11 +37,7 @@ abstract class $BrandModelCopyWith<$Res> {
           BrandModel value, $Res Function(BrandModel) then) =
       _$BrandModelCopyWithImpl<$Res, BrandModel>;
   @useResult
-  $Res call(
-      {String image,
-      @JsonKey(name: 'brand_name') String brandName,
-      String field,
-      String description});
+  $Res call({String image, String brandName, String field, String description});
 }
 
 /// @nodoc
@@ -92,11 +87,7 @@ abstract class _$$_BrandModelCopyWith<$Res>
       __$$_BrandModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String image,
-      @JsonKey(name: 'brand_name') String brandName,
-      String field,
-      String description});
+  $Res call({String image, String brandName, String field, String description});
 }
 
 /// @nodoc
@@ -137,10 +128,10 @@ class __$$_BrandModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_BrandModel implements _BrandModel {
-  _$_BrandModel(this.image, @JsonKey(name: 'brand_name') this.brandName,
-      this.field, this.description);
+  _$_BrandModel(this.image, this.brandName, this.field, this.description);
 
   factory _$_BrandModel.fromJson(Map<String, dynamic> json) =>
       _$$_BrandModelFromJson(json);
@@ -148,7 +139,6 @@ class _$_BrandModel implements _BrandModel {
   @override
   final String image;
   @override
-  @JsonKey(name: 'brand_name')
   final String brandName;
   @override
   final String field;
@@ -193,11 +183,8 @@ class _$_BrandModel implements _BrandModel {
 }
 
 abstract class _BrandModel implements BrandModel {
-  factory _BrandModel(
-      final String image,
-      @JsonKey(name: 'brand_name') final String brandName,
-      final String field,
-      final String description) = _$_BrandModel;
+  factory _BrandModel(final String image, final String brandName,
+      final String field, final String description) = _$_BrandModel;
 
   factory _BrandModel.fromJson(Map<String, dynamic> json) =
       _$_BrandModel.fromJson;
@@ -205,7 +192,6 @@ abstract class _BrandModel implements BrandModel {
   @override
   String get image;
   @override
-  @JsonKey(name: 'brand_name')
   String get brandName;
   @override
   String get field;

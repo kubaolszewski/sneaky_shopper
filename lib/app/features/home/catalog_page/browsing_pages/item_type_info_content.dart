@@ -18,7 +18,7 @@ class ItemTypeInfoContent extends StatelessWidget {
         backgroundColor: const Color(0xff03675B),
         centerTitle: true,
         title: Text(
-          model.type,
+          model.itemType,
           style: GoogleFonts.teko(
             color: Colors.white,
             fontSize: 36,
@@ -44,15 +44,7 @@ class ItemTypeInfoContent extends StatelessWidget {
                   ),
                   Text(
                     textAlign: TextAlign.center,
-                    model.type,
-                    style: GoogleFonts.teko(
-                      color: Colors.white,
-                      fontSize: 32,
-                    ),
-                  ),
-                  Text(
-                    textAlign: TextAlign.center,
-                    model.type,
+                    model.itemType,
                     style: GoogleFonts.teko(
                       color: Colors.white,
                       fontSize: 32,

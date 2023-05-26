@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:injectable/injectable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
 import 'package:sneaky_shopper/repositories/items_repository.dart';
 
 part 'add_product_page_state.dart';
 
-@injectable
+part 'add_product_page_cubit.freezed.dart';
+
 class AddProductPageCubit extends Cubit<AddProductPageState> {
   AddProductPageCubit({required this.itemsRepository})
       : super(const AddProductPageState());
@@ -86,20 +87,6 @@ class AddProductPageCubit extends Cubit<AddProductPageState> {
           errorMessage: error.toString(),
         ),
       );
-    }
-  }
-
-  Future<void> start() async {
-    emit(const AddProductPageState(status: Status.loading));
-    try {
-      emit(const AddProductPageState(
-        status: Status.success,
-      ));
-    } catch (error) {
-      emit(AddProductPageState(
-        status: Status.error,
-        errorMessage: error.toString(),
-      ));
     }
   }
 }

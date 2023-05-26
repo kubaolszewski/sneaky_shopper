@@ -20,8 +20,7 @@ ItemInfoModel _$ItemInfoModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ItemInfoModel {
-  @JsonKey(name: 'item_type')
-  String get type => throw _privateConstructorUsedError;
+  String get itemType => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
@@ -37,10 +36,7 @@ abstract class $ItemInfoModelCopyWith<$Res> {
           ItemInfoModel value, $Res Function(ItemInfoModel) then) =
       _$ItemInfoModelCopyWithImpl<$Res, ItemInfoModel>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'item_type') String type,
-      String image,
-      String description});
+  $Res call({String itemType, String image, String description});
 }
 
 /// @nodoc
@@ -56,14 +52,14 @@ class _$ItemInfoModelCopyWithImpl<$Res, $Val extends ItemInfoModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? itemType = null,
     Object? image = null,
     Object? description = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      itemType: null == itemType
+          ? _value.itemType
+          : itemType // ignore: cast_nullable_to_non_nullable
               as String,
       image: null == image
           ? _value.image
@@ -85,10 +81,7 @@ abstract class _$$_ItemInfoModelCopyWith<$Res>
       __$$_ItemInfoModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'item_type') String type,
-      String image,
-      String description});
+  $Res call({String itemType, String image, String description});
 }
 
 /// @nodoc
@@ -102,14 +95,14 @@ class __$$_ItemInfoModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? itemType = null,
     Object? image = null,
     Object? description = null,
   }) {
     return _then(_$_ItemInfoModel(
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      null == itemType
+          ? _value.itemType
+          : itemType // ignore: cast_nullable_to_non_nullable
               as String,
       null == image
           ? _value.image
@@ -124,17 +117,16 @@ class __$$_ItemInfoModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_ItemInfoModel implements _ItemInfoModel {
-  _$_ItemInfoModel(
-      @JsonKey(name: 'item_type') this.type, this.image, this.description);
+  _$_ItemInfoModel(this.itemType, this.image, this.description);
 
   factory _$_ItemInfoModel.fromJson(Map<String, dynamic> json) =>
       _$$_ItemInfoModelFromJson(json);
 
   @override
-  @JsonKey(name: 'item_type')
-  final String type;
+  final String itemType;
   @override
   final String image;
   @override
@@ -142,7 +134,7 @@ class _$_ItemInfoModel implements _ItemInfoModel {
 
   @override
   String toString() {
-    return 'ItemInfoModel(type: $type, image: $image, description: $description)';
+    return 'ItemInfoModel(itemType: $itemType, image: $image, description: $description)';
   }
 
   @override
@@ -150,7 +142,8 @@ class _$_ItemInfoModel implements _ItemInfoModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ItemInfoModel &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.itemType, itemType) ||
+                other.itemType == itemType) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.description, description) ||
                 other.description == description));
@@ -158,7 +151,7 @@ class _$_ItemInfoModel implements _ItemInfoModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, image, description);
+  int get hashCode => Object.hash(runtimeType, itemType, image, description);
 
   @JsonKey(ignore: true)
   @override
@@ -175,15 +168,15 @@ class _$_ItemInfoModel implements _ItemInfoModel {
 }
 
 abstract class _ItemInfoModel implements ItemInfoModel {
-  factory _ItemInfoModel(@JsonKey(name: 'item_type') final String type,
-      final String image, final String description) = _$_ItemInfoModel;
+  factory _ItemInfoModel(
+          final String itemType, final String image, final String description) =
+      _$_ItemInfoModel;
 
   factory _ItemInfoModel.fromJson(Map<String, dynamic> json) =
       _$_ItemInfoModel.fromJson;
 
   @override
-  @JsonKey(name: 'item_type')
-  String get type;
+  String get itemType;
   @override
   String get image;
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sneaky_shopper/app/core/enums.dart';
-import 'package:sneaky_shopper/app/features/item_details/cubit/item_details_cubit.dart';
+import 'package:sneaky_shopper/app/features/home/list_page/item_details/cubit/item_details_cubit.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
@@ -19,6 +19,7 @@ class ItemDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff03675B),
+        elevation: 8.0,
         centerTitle: true,
         title: Text(
           'Sneaky Shopper',
@@ -30,8 +31,7 @@ class ItemDetailsPage extends StatelessWidget {
       ),
       backgroundColor: const Color(0xff2D9A8D),
       body: BlocProvider<ItemDetailsCubit>(
-        create: (context)  => getIt()
-          ..getItemWithID(id: id),
+        create: (context) => getIt()..getItemWithID(id: id),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -141,26 +141,26 @@ class _ProductWidgetDetails extends StatelessWidget {
                       fontSize: 30,
                     ),
                   ),
-                   Padding(
-                     padding: const EdgeInsets.all(10.0),
-                     child: Container(
-                       decoration: BoxDecoration(
-                         color: const Color(0xff85c8c9),
-                         borderRadius: BorderRadius.circular(12.0),
-                       ),
-                       child: Padding(
-                         padding: const EdgeInsets.all(8.0),
-                         child: Text(
-                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                           'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-                           style: GoogleFonts.teko(
-                             color: Colors.white,
-                             fontSize: 24,
-                           ),
-                         ),
-                       ),
-                     ),
-                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xff85c8c9),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                          'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+                          style: GoogleFonts.teko(
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

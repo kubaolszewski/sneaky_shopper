@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'item_info_model.dart';
 
 // **************************************************************************
@@ -17,7 +15,7 @@ _$_ItemInfoModel _$$_ItemInfoModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_ItemInfoModelToJson(_$_ItemInfoModel instance) =>
     <String, dynamic>{
-      'item_type': instance.type,
+      'item_type': instance.itemType,
       'image': instance.image,
       'description': instance.description,
     };
