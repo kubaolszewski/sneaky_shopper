@@ -24,7 +24,7 @@ class _ItemsInfoRemoteRetrofitDataSource
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<ItemInfoModel>>(Options(
       method: 'GET',
@@ -49,7 +49,7 @@ class _ItemsInfoRemoteRetrofitDataSource
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<List<dynamic>>(_setStreamType<List<BrandModel>>(Options(
       method: 'GET',

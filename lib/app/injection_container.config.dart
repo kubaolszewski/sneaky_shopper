@@ -4,6 +4,10 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -11,13 +15,11 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart' as _i5;
 import 'package:sneaky_shopper/app/features/home/add_product_page/cubit/add_product_page_cubit.dart'
     as _i10;
-import 'package:sneaky_shopper/app/features/home/catalog_page/cubit/catalog_page_cubit.dart'
-    as _i11;
 import 'package:sneaky_shopper/app/features/home/list_page/cubit/list_page_cubit.dart'
     as _i9;
 import 'package:sneaky_shopper/app/features/home/list_page/item_details/cubit/item_details_cubit.dart'
-    as _i12;
-import 'package:sneaky_shopper/app/injection_container.dart' as _i13;
+    as _i11;
+import 'package:sneaky_shopper/app/injection_container.dart' as _i12;
 import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart'
     as _i7;
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart'
@@ -25,10 +27,8 @@ import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_d
 import 'package:sneaky_shopper/repositories/items_repository.dart' as _i8;
 import 'package:sneaky_shopper/repositories/login_repository.dart' as _i4;
 
-/// ignore_for_file: unnecessary_lambdas
-/// ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
-  /// initializes the registration of main-scope dependencies inside of [GetIt]
+  // initializes the registration of main-scope dependencies inside of GetIt
   _i1.GetIt init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -62,12 +62,10 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i9.ListPageCubit(itemsRepository: gh<_i8.ItemsRepository>()));
     gh.factory<_i10.AddProductPageCubit>(() =>
         _i10.AddProductPageCubit(itemsRepository: gh<_i8.ItemsRepository>()));
-    gh.factory<_i11.CatalogPageCubit>(() =>
-        _i11.CatalogPageCubit(itemsRepository: gh<_i8.ItemsRepository>()));
-    gh.factory<_i12.ItemDetailsCubit>(() =>
-        _i12.ItemDetailsCubit(itemsRepository: gh<_i8.ItemsRepository>()));
+    gh.factory<_i11.ItemDetailsCubit>(() =>
+        _i11.ItemDetailsCubit(itemsRepository: gh<_i8.ItemsRepository>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i13.RegisterModule {}
+class _$RegisterModule extends _i12.RegisterModule {}
