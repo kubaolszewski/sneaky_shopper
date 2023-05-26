@@ -1,7 +1,5 @@
 import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
-import 'package:sneaky_shopper/models/brand_model.dart';
-import 'package:sneaky_shopper/models/item_info_model.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
 
 class ItemsRepository {
@@ -20,13 +18,13 @@ class ItemsRepository {
     return itemsRemoteFirestoreDataSource.getDetails(id: id);
   }
 
-  Future<List<ItemInfoModel>> provideRemoteInfo() async {
-    return itemsRemoteRetrofitDataSource.provideRemoteInfo();
-  }
+  // Future<List<ItemInfoModel>> provideRemoteInfo() async {
+  //   return itemsRemoteRetrofitDataSource.provideRemoteInfo();
+  // }
 
-  Future<List<BrandModel>> provideBrands() async {
-    return itemsRemoteRetrofitDataSource.provideBrands();
-  }
+  // Future<List<BrandModel>> provideBrands() async {
+  //   return itemsRemoteRetrofitDataSource.provideBrands();
+  // }
 
   Future<void> addProductToList(String name, String price, String size,
       String itemType, String image) async {
