@@ -29,7 +29,6 @@ class BrandInfoContent extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10.0),
         child: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
