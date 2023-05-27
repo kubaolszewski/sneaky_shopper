@@ -6,6 +6,8 @@ import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
 import 'package:sneaky_shopper/app/features/home/add_product_page/add_product_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/list_page/list_page_content.dart';
 import 'package:sneaky_shopper/app/features/home/my_account/my_account_page_content.dart';
+import 'package:sneaky_shopper/app/features/home/search_page/cubit/search_page_cubit.dart';
+import 'package:sneaky_shopper/app/features/home/search_page/search_page.dart';
 import 'package:sneaky_shopper/app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +27,23 @@ class HomePage extends StatelessWidget {
           return Scaffold(
             backgroundColor: const Color(0xff2D9A8D),
             appBar: AppBar(
+              actions: [
+                BlocProvider(
+                  create: (context) => SearchPageCubit(),
+                  child: IconButton(
+                    onPressed: () async {
+                      await showSearch(
+                          context: context,
+                          delegate:
+                              SearchPage(searchPageCubit: SearchPageCubit()));
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              ],
               elevation: 8.0,
               backgroundColor: const Color(0xff03675B),
               title: Text(
