@@ -69,22 +69,22 @@ class _$ListPageStateCopyWithImpl<$Res, $Val extends ListPageState>
 }
 
 /// @nodoc
-abstract class _$$_ListPageStateCopyWith<$Res>
+abstract class _$$ListPageStateImplCopyWith<$Res>
     implements $ListPageStateCopyWith<$Res> {
-  factory _$$_ListPageStateCopyWith(
-          _$_ListPageState value, $Res Function(_$_ListPageState) then) =
-      __$$_ListPageStateCopyWithImpl<$Res>;
+  factory _$$ListPageStateImplCopyWith(
+          _$ListPageStateImpl value, $Res Function(_$ListPageStateImpl) then) =
+      __$$ListPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<ItemModel> items, Status status, String errorMessage});
 }
 
 /// @nodoc
-class __$$_ListPageStateCopyWithImpl<$Res>
-    extends _$ListPageStateCopyWithImpl<$Res, _$_ListPageState>
-    implements _$$_ListPageStateCopyWith<$Res> {
-  __$$_ListPageStateCopyWithImpl(
-      _$_ListPageState _value, $Res Function(_$_ListPageState) _then)
+class __$$ListPageStateImplCopyWithImpl<$Res>
+    extends _$ListPageStateCopyWithImpl<$Res, _$ListPageStateImpl>
+    implements _$$ListPageStateImplCopyWith<$Res> {
+  __$$ListPageStateImplCopyWithImpl(
+      _$ListPageStateImpl _value, $Res Function(_$ListPageStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_ListPageStateCopyWithImpl<$Res>
     Object? status = null,
     Object? errorMessage = null,
   }) {
-    return _then(_$_ListPageState(
+    return _then(_$ListPageStateImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_ListPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ListPageState implements _ListPageState {
-  const _$_ListPageState(
+class _$ListPageStateImpl implements _ListPageState {
+  const _$ListPageStateImpl(
       {final List<ItemModel> items = const [],
       this.status = Status.initial,
       this.errorMessage = ''})
@@ -145,7 +145,7 @@ class _$_ListPageState implements _ListPageState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListPageState &&
+            other is _$ListPageStateImpl &&
             const DeepCollectionEquality().equals(other._items, _items) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
@@ -159,15 +159,15 @@ class _$_ListPageState implements _ListPageState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListPageStateCopyWith<_$_ListPageState> get copyWith =>
-      __$$_ListPageStateCopyWithImpl<_$_ListPageState>(this, _$identity);
+  _$$ListPageStateImplCopyWith<_$ListPageStateImpl> get copyWith =>
+      __$$ListPageStateImplCopyWithImpl<_$ListPageStateImpl>(this, _$identity);
 }
 
 abstract class _ListPageState implements ListPageState {
   const factory _ListPageState(
       {final List<ItemModel> items,
       final Status status,
-      final String errorMessage}) = _$_ListPageState;
+      final String errorMessage}) = _$ListPageStateImpl;
 
   @override
   List<ItemModel> get items;
@@ -177,6 +177,6 @@ abstract class _ListPageState implements ListPageState {
   String get errorMessage;
   @override
   @JsonKey(ignore: true)
-  _$$_ListPageStateCopyWith<_$_ListPageState> get copyWith =>
+  _$$ListPageStateImplCopyWith<_$ListPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

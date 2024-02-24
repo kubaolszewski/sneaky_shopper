@@ -27,7 +27,6 @@ class ListPageCubit extends Cubit<ListPageState> {
           errorMessage: error.toString(),
         ),
       );
-      start();
     }
   }
 

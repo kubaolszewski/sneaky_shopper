@@ -69,22 +69,22 @@ class _$ItemDetailsStateCopyWithImpl<$Res, $Val extends ItemDetailsState>
 }
 
 /// @nodoc
-abstract class _$$_ItemDetailsStateCopyWith<$Res>
+abstract class _$$ItemDetailsStateImplCopyWith<$Res>
     implements $ItemDetailsStateCopyWith<$Res> {
-  factory _$$_ItemDetailsStateCopyWith(
-          _$_ItemDetailsState value, $Res Function(_$_ItemDetailsState) then) =
-      __$$_ItemDetailsStateCopyWithImpl<$Res>;
+  factory _$$ItemDetailsStateImplCopyWith(_$ItemDetailsStateImpl value,
+          $Res Function(_$ItemDetailsStateImpl) then) =
+      __$$ItemDetailsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ItemModel? itemDetailsModel, Status status, String? errorMessage});
 }
 
 /// @nodoc
-class __$$_ItemDetailsStateCopyWithImpl<$Res>
-    extends _$ItemDetailsStateCopyWithImpl<$Res, _$_ItemDetailsState>
-    implements _$$_ItemDetailsStateCopyWith<$Res> {
-  __$$_ItemDetailsStateCopyWithImpl(
-      _$_ItemDetailsState _value, $Res Function(_$_ItemDetailsState) _then)
+class __$$ItemDetailsStateImplCopyWithImpl<$Res>
+    extends _$ItemDetailsStateCopyWithImpl<$Res, _$ItemDetailsStateImpl>
+    implements _$$ItemDetailsStateImplCopyWith<$Res> {
+  __$$ItemDetailsStateImplCopyWithImpl(_$ItemDetailsStateImpl _value,
+      $Res Function(_$ItemDetailsStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_ItemDetailsStateCopyWithImpl<$Res>
     Object? status = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(_$_ItemDetailsState(
+    return _then(_$ItemDetailsStateImpl(
       itemDetailsModel: freezed == itemDetailsModel
           ? _value.itemDetailsModel
           : itemDetailsModel // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_ItemDetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ItemDetailsState implements _ItemDetailsState {
-  const _$_ItemDetailsState(
+class _$ItemDetailsStateImpl implements _ItemDetailsState {
+  const _$ItemDetailsStateImpl(
       {this.itemDetailsModel, this.status = Status.initial, this.errorMessage});
 
   @override
@@ -134,7 +134,7 @@ class _$_ItemDetailsState implements _ItemDetailsState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ItemDetailsState &&
+            other is _$ItemDetailsStateImpl &&
             (identical(other.itemDetailsModel, itemDetailsModel) ||
                 other.itemDetailsModel == itemDetailsModel) &&
             (identical(other.status, status) || other.status == status) &&
@@ -149,15 +149,16 @@ class _$_ItemDetailsState implements _ItemDetailsState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemDetailsStateCopyWith<_$_ItemDetailsState> get copyWith =>
-      __$$_ItemDetailsStateCopyWithImpl<_$_ItemDetailsState>(this, _$identity);
+  _$$ItemDetailsStateImplCopyWith<_$ItemDetailsStateImpl> get copyWith =>
+      __$$ItemDetailsStateImplCopyWithImpl<_$ItemDetailsStateImpl>(
+          this, _$identity);
 }
 
 abstract class _ItemDetailsState implements ItemDetailsState {
   const factory _ItemDetailsState(
       {final ItemModel? itemDetailsModel,
       final Status status,
-      final String? errorMessage}) = _$_ItemDetailsState;
+      final String? errorMessage}) = _$ItemDetailsStateImpl;
 
   @override
   ItemModel? get itemDetailsModel;
@@ -167,6 +168,6 @@ abstract class _ItemDetailsState implements ItemDetailsState {
   String? get errorMessage;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemDetailsStateCopyWith<_$_ItemDetailsState> get copyWith =>
+  _$$ItemDetailsStateImplCopyWith<_$ItemDetailsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

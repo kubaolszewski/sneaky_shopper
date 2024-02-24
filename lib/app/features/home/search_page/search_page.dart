@@ -65,19 +65,19 @@ class SearchPage extends SearchDelegate<String> {
           }
 
           if (state.status == Status.success) {
-            // final List<SingleComicModel> comics = state.comics;
+            // final List<SingleSneakerModel> sneakers = state.sneakersModel;
 
-            // if (comics.isEmpty) {
+            // if (sneakers.isEmpty) {
             //   return const Center(
             //     child: Text('No results were found.'),
             //   );
             // }
 
             // return ListView.builder(
-            //   itemCount: comics.length,
+            //   itemCount: sneakers.length,
             //   itemBuilder: (context, index) {
-            //     final comic = comics[index];
-            //     return ComicWidget(comic: comic);
+            //     final singleSneaker = sneakers[index];
+            //     return SneakerPage(sneaker: singleSneaker);
             //   },
             // );
           }

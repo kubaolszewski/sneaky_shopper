@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:iconsax/iconsax.dart';
 import 'package:sneaky_shopper/app/cubit/root_cubit.dart';
+import 'package:sneaky_shopper/app/features/home/search_page/cubit/search_page_cubit.dart';
 
 class MyAccountPageContent extends StatelessWidget {
   const MyAccountPageContent({
@@ -29,6 +29,21 @@ class MyAccountPageContent extends StatelessWidget {
             style: GoogleFonts.teko(color: Colors.white, fontSize: 24),
           ),
           const SizedBox(height: 10),
+          BlocProvider(
+            create: (context) => SearchPageCubit(),
+            child: BlocBuilder<SearchPageCubit, SearchPageState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                    onPressed: () {
+                      context.read<SearchPageCubit>().fetchSneakers();
+                    },
+                    child: const Text('try API'));
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           ActionChip(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24),

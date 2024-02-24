@@ -85,10 +85,11 @@ class _$RootStateCopyWithImpl<$Res, $Val extends RootState>
 }
 
 /// @nodoc
-abstract class _$$_RootStateCopyWith<$Res> implements $RootStateCopyWith<$Res> {
-  factory _$$_RootStateCopyWith(
-          _$_RootState value, $Res Function(_$_RootState) then) =
-      __$$_RootStateCopyWithImpl<$Res>;
+abstract class _$$RootStateImplCopyWith<$Res>
+    implements $RootStateCopyWith<$Res> {
+  factory _$$RootStateImplCopyWith(
+          _$RootStateImpl value, $Res Function(_$RootStateImpl) then) =
+      __$$RootStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -100,11 +101,11 @@ abstract class _$$_RootStateCopyWith<$Res> implements $RootStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RootStateCopyWithImpl<$Res>
-    extends _$RootStateCopyWithImpl<$Res, _$_RootState>
-    implements _$$_RootStateCopyWith<$Res> {
-  __$$_RootStateCopyWithImpl(
-      _$_RootState _value, $Res Function(_$_RootState) _then)
+class __$$RootStateImplCopyWithImpl<$Res>
+    extends _$RootStateCopyWithImpl<$Res, _$RootStateImpl>
+    implements _$$RootStateImplCopyWith<$Res> {
+  __$$RootStateImplCopyWithImpl(
+      _$RootStateImpl _value, $Res Function(_$RootStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +117,7 @@ class __$$_RootStateCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? pageIndex = null,
   }) {
-    return _then(_$_RootState(
+    return _then(_$RootStateImpl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -143,8 +144,8 @@ class __$$_RootStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RootState implements _RootState {
-  const _$_RootState(
+class _$RootStateImpl implements _RootState {
+  const _$RootStateImpl(
       {this.user,
       this.status = Status.initial,
       this.isCreatingAccount = false,
@@ -175,7 +176,7 @@ class _$_RootState implements _RootState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RootState &&
+            other is _$RootStateImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isCreatingAccount, isCreatingAccount) ||
@@ -193,8 +194,8 @@ class _$_RootState implements _RootState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RootStateCopyWith<_$_RootState> get copyWith =>
-      __$$_RootStateCopyWithImpl<_$_RootState>(this, _$identity);
+  _$$RootStateImplCopyWith<_$RootStateImpl> get copyWith =>
+      __$$RootStateImplCopyWithImpl<_$RootStateImpl>(this, _$identity);
 }
 
 abstract class _RootState implements RootState {
@@ -203,7 +204,7 @@ abstract class _RootState implements RootState {
       final Status status,
       final bool isCreatingAccount,
       final String errorMessage,
-      final int pageIndex}) = _$_RootState;
+      final int pageIndex}) = _$RootStateImpl;
 
   @override
   User? get user;
@@ -217,6 +218,6 @@ abstract class _RootState implements RootState {
   int get pageIndex;
   @override
   @JsonKey(ignore: true)
-  _$$_RootStateCopyWith<_$_RootState> get copyWith =>
+  _$$RootStateImplCopyWith<_$RootStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

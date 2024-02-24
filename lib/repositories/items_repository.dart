@@ -1,14 +1,25 @@
 import 'package:sneaky_shopper/data/remote_data_sources/items_info_remote_data_source.dart';
 import 'package:sneaky_shopper/data/remote_data_sources/items_remote_firestore_data_source.dart';
 import 'package:sneaky_shopper/models/item_model.dart';
+import 'package:sneaky_shopper/models/single_sneaker_model.dart';
 
 class ItemsRepository {
   ItemsRepository(
-      {required this.itemsRemoteFirestoreDataSource,
+      {required this.sneakersRemoteDataSource,
+      required this.itemsRemoteFirestoreDataSource,
       required this.itemsRemoteRetrofitDataSource});
 
   final ItemsRemoteFirestoreDataSource itemsRemoteFirestoreDataSource;
   final ItemsInfoRemoteRetrofitDataSource itemsRemoteRetrofitDataSource;
+  final SneakersRemoteDataSource sneakersRemoteDataSource;
+
+  Future<List<SingleSneakerModel>> fetchSneakers() async {
+    try {
+      return await sneakersRemoteDataSource.fetchSneakers();
+    } catch (error) {
+      rethrow;
+    }
+  }
 
   Stream<List<ItemModel>> getItemsStream() {
     return itemsRemoteFirestoreDataSource.getItemsStream();

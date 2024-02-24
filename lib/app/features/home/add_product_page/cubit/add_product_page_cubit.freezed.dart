@@ -100,11 +100,11 @@ class _$AddProductPageStateCopyWithImpl<$Res, $Val extends AddProductPageState>
 }
 
 /// @nodoc
-abstract class _$$_AddProductPageStateCopyWith<$Res>
+abstract class _$$AddProductPageStateImplCopyWith<$Res>
     implements $AddProductPageStateCopyWith<$Res> {
-  factory _$$_AddProductPageStateCopyWith(_$_AddProductPageState value,
-          $Res Function(_$_AddProductPageState) then) =
-      __$$_AddProductPageStateCopyWithImpl<$Res>;
+  factory _$$AddProductPageStateImplCopyWith(_$AddProductPageStateImpl value,
+          $Res Function(_$AddProductPageStateImpl) then) =
+      __$$AddProductPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -118,11 +118,11 @@ abstract class _$$_AddProductPageStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AddProductPageStateCopyWithImpl<$Res>
-    extends _$AddProductPageStateCopyWithImpl<$Res, _$_AddProductPageState>
-    implements _$$_AddProductPageStateCopyWith<$Res> {
-  __$$_AddProductPageStateCopyWithImpl(_$_AddProductPageState _value,
-      $Res Function(_$_AddProductPageState) _then)
+class __$$AddProductPageStateImplCopyWithImpl<$Res>
+    extends _$AddProductPageStateCopyWithImpl<$Res, _$AddProductPageStateImpl>
+    implements _$$AddProductPageStateImplCopyWith<$Res> {
+  __$$AddProductPageStateImplCopyWithImpl(_$AddProductPageStateImpl _value,
+      $Res Function(_$AddProductPageStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,7 +136,7 @@ class __$$_AddProductPageStateCopyWithImpl<$Res>
     Object? typeValue = null,
     Object? image = null,
   }) {
-    return _then(_$_AddProductPageState(
+    return _then(_$AddProductPageStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -171,8 +171,8 @@ class __$$_AddProductPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AddProductPageState implements _AddProductPageState {
-  const _$_AddProductPageState(
+class _$AddProductPageStateImpl implements _AddProductPageState {
+  const _$AddProductPageStateImpl(
       {this.status = Status.initial,
       this.errorMessage = '',
       this.nameValue = '',
@@ -212,7 +212,7 @@ class _$_AddProductPageState implements _AddProductPageState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddProductPageState &&
+            other is _$AddProductPageStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -234,8 +234,8 @@ class _$_AddProductPageState implements _AddProductPageState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddProductPageStateCopyWith<_$_AddProductPageState> get copyWith =>
-      __$$_AddProductPageStateCopyWithImpl<_$_AddProductPageState>(
+  _$$AddProductPageStateImplCopyWith<_$AddProductPageStateImpl> get copyWith =>
+      __$$AddProductPageStateImplCopyWithImpl<_$AddProductPageStateImpl>(
           this, _$identity);
 }
 
@@ -247,7 +247,7 @@ abstract class _AddProductPageState implements AddProductPageState {
       final String priceValue,
       final String sizeValue,
       final String typeValue,
-      final String image}) = _$_AddProductPageState;
+      final String image}) = _$AddProductPageStateImpl;
 
   @override
   Status get status;
@@ -265,6 +265,6 @@ abstract class _AddProductPageState implements AddProductPageState {
   String get image;
   @override
   @JsonKey(ignore: true)
-  _$$_AddProductPageStateCopyWith<_$_AddProductPageState> get copyWith =>
+  _$$AddProductPageStateImplCopyWith<_$AddProductPageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
