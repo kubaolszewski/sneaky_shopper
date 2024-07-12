@@ -4,8 +4,8 @@ import 'package:sneaky_shopper/app/root_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

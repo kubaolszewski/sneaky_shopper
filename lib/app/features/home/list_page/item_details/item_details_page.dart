@@ -9,8 +9,8 @@ import 'package:sneaky_shopper/models/item_model.dart';
 class ItemDetailsPage extends StatelessWidget {
   const ItemDetailsPage({
     required this.id,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String id;
 
@@ -85,9 +85,8 @@ class ItemDetailsPage extends StatelessWidget {
 
 class _ProductWidgetDetails extends StatelessWidget {
   const _ProductWidgetDetails({
-    Key? key,
     required this.itemDetailsModel,
-  }) : super(key: key);
+  });
 
   final ItemModel itemDetailsModel;
 

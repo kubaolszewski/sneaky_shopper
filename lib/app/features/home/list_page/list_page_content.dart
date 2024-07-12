@@ -9,8 +9,8 @@ import 'package:sneaky_shopper/models/item_model.dart';
 
 class ListPageContent extends StatelessWidget {
   const ListPageContent({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +121,8 @@ class ListPageContent extends StatelessWidget {
 
 class _ItemWidget extends StatelessWidget {
   const _ItemWidget({
-    Key? key,
     required this.itemModel,
-  }) : super(key: key);
+  });
 
   final ItemModel itemModel;
 

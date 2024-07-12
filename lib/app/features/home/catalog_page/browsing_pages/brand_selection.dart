@@ -9,8 +9,8 @@ import 'package:sneaky_shopper/models/brand_model.dart';
 
 class BrandPage extends StatelessWidget {
   const BrandPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +66,8 @@ class BrandPage extends StatelessWidget {
 
 class _BrandSelection extends StatelessWidget {
   const _BrandSelection({
-    Key? key,
     required this.brand,
-  }) : super(key: key);
+  });
 
   final BrandModel brand;
 

@@ -6,9 +6,9 @@ import 'package:sneaky_shopper/app/injection_container.dart';
 
 class AddProductPageContent extends StatelessWidget {
   const AddProductPageContent({
-    Key? key,
+    super.key,
     required this.onSave,
-  }) : super(key: key);
+  });
 
   final Function onSave;
 
@@ -124,10 +124,9 @@ class AddProductPageContent extends StatelessWidget {
 
 class _ThemedTextField extends StatelessWidget {
   const _ThemedTextField({
-    Key? key,
     required this.hintText,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final String hintText;
   final Function onChanged;

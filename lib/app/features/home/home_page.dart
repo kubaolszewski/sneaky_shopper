@@ -12,9 +12,9 @@ import 'package:sneaky_shopper/app/injection_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   final User user;
 
@@ -73,9 +73,8 @@ class HomePage extends StatelessWidget {
 
 class _CustomNavBar extends StatelessWidget {
   const _CustomNavBar({
-    Key? key,
     required this.pageIndex,
-  }) : super(key: key);
+  });
 
   final int pageIndex;
 

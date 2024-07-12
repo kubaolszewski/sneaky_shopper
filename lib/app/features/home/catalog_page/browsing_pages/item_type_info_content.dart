@@ -4,9 +4,9 @@ import 'package:sneaky_shopper/models/item_info_model.dart';
 
 class ItemTypeInfoContent extends StatelessWidget {
   const ItemTypeInfoContent({
-    Key? key,
+    super.key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ItemInfoModel model;
 

@@ -4,9 +4,9 @@ import 'package:sneaky_shopper/models/brand_model.dart';
 
 class BrandInfoContent extends StatelessWidget {
   const BrandInfoContent({
-    Key? key,
+    super.key,
     required this.brand,
-  }) : super(key: key);
+  });
 
   final BrandModel brand;
 

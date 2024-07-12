@@ -7,8 +7,8 @@ import 'package:sneaky_shopper/app/injection_container.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

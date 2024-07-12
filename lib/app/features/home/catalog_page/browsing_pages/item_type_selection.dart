@@ -9,8 +9,8 @@ import 'package:sneaky_shopper/models/item_info_model.dart';
 
 class ItemType extends StatelessWidget {
   const ItemType({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   // final List<String> selectionButtons = ['Item types', 'Brands'];
 
@@ -83,9 +83,8 @@ class ItemType extends StatelessWidget {
 
 class _ItemTypeSelection extends StatelessWidget {
   const _ItemTypeSelection({
-    Key? key,
     required this.model,
-  }) : super(key: key);
+  });
 
   final ItemInfoModel model;
 

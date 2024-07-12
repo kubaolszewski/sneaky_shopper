@@ -8,8 +8,8 @@ import 'package:sneaky_shopper/common_widgets_themes/textbutton_theme.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
